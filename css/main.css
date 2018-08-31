@@ -2100,7 +2100,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff57b5;
+  background: #d271c6;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3433,7 +3433,7 @@ body {
   background-position: center;
 }
 .site-meta {
-  background: $dark;
+  background: #555;
 }
 code {
   color: #ff7600;
