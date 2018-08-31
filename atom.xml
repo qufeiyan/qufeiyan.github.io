@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>QuFeiyan&#39;s Hut</title>
-  <icon>https://www.gravatar.com/avatar/6416cc7030089346b2bf26c591ca1f72</icon>
-  <subtitle>最难风雨故人来 | 一曲非烟</subtitle>
+  
+  <subtitle>最难风雨故人来 || 一曲非烟</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qufeiyan.top/"/>
@@ -10,16 +10,16 @@
   <id>http://qufeiyan.top/</id>
   
   <author>
-    <name>Qu Feiyan</name>
-    <email>2491411913@qq.com</email>
+    <name>曲非烟</name>
+    
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
     <title>设计模式之Bridge模式</title>
-    <link href="http://qufeiyan.top/posts/2af670e6/"/>
-    <id>http://qufeiyan.top/posts/2af670e6/</id>
+    <link href="http://qufeiyan.top/post/2af670e6.html"/>
+    <id>http://qufeiyan.top/post/2af670e6.html</id>
     <published>2018-08-29T13:21:25.000Z</published>
     <updated>2018-08-30T05:27:56.402Z</updated>
     
@@ -47,8 +47,8 @@
   
   <entry>
     <title>设计模式之Proxy模式</title>
-    <link href="http://qufeiyan.top/posts/ae91a8e6/"/>
-    <id>http://qufeiyan.top/posts/ae91a8e6/</id>
+    <link href="http://qufeiyan.top/post/ae91a8e6.html"/>
+    <id>http://qufeiyan.top/post/ae91a8e6.html</id>
     <published>2018-08-29T08:19:39.000Z</published>
     <updated>2018-08-30T05:28:50.830Z</updated>
     
@@ -77,8 +77,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://qufeiyan.top/posts/4a17b156/"/>
-    <id>http://qufeiyan.top/posts/4a17b156/</id>
+    <link href="http://qufeiyan.top/post/4a17b156.html"/>
+    <id>http://qufeiyan.top/post/4a17b156.html</id>
     <published>2018-08-25T08:03:52.122Z</published>
     <updated>2018-08-30T06:12:35.405Z</updated>
     
