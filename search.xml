@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode刷题之14.md]]></title>
+    <url>%2Fpost%2Ff9dfb861.html</url>
+    <content type="text"><![CDATA[题目 编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串””。 示例1 输入： [“flower”,”flow”,”flight”] 输出： “fl” 示例2 输入： [“dog”,”racecar”,”car”] 输出： “” 解释： 输入不存在公共前缀 说明所有输入只包含小写字母a-z； 实现代码：C++12345678910111213141516171819202122232425262728class Solution&#123;public: string longestCommonPrefix(vector&lt;string&gt;&amp; strs)&#123; int size = strs.size(); if(size == 0)&#123; return ""; &#125; string temp; bool flag = false; for(int j = 0; j &lt; strs[0].size(); j++)&#123; char t = strs[0][j]; for(int i = 0; i &lt; size; i++)&#123; if(strs[i][j] != t || strs[i][j == '\0'])&#123; flag = true; break; &#125; &#125; if(flag)&#123; break; &#125; temp.push_back(t); &#125; return temp; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[设计模式之Bridge模式]]></title>
     <url>%2Fpost%2F2af670e6.html</url>
     <content type="text"><![CDATA[Bridge 模式存在之意图:“将抽象与现实解耦，使它们可以独立地变化”。 Bridge 模式是最难理解的模式，部分原因是它功能非常强大，适用于多种场合。而且，它还与常见的用继承来处理特殊情况的方式背道而驰。但是，它却是一个遵循设计模式社区两大原则的极好例子：“找出变化并封装之”和“优先使用对象聚集，而不是类继承”。 需求特点： 概念的抽象有变化； 这些概念的实现方式有变化。 要点：在需求定义期间，应该尽早而且经常地考虑变化。 UML类图如下： 问题：一个抽象类的派生类必须使用多个实现，但它不能出现类数量爆炸性增长。 解决方案：为所有实现定义一个接口，供抽象类的所有派生类使用。 参与者与协作者：Abstraction为要实现的对象定义接口，Implementor为具体的实现类定义接口。Abstraction的派生类使用Implementor的派生类，却无需知道自己具体使用哪一个ConcreteImplementor。 效果：实现与使用实现的对象解耦，提供了可扩展性，客户对象无需操心实现问题。 代码示例：假设目前有这么几个类:GoogleTV 和 AppleTV,都能实现换台，与开关电视等基本功能，但是并没有一个统一的接口，用户其实也不care你用的是哪个TV，用户只是单纯想看芒果台而已。现在使用Bridge模式实现这个需求。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768public interface TV&#123; public void powerON(); public void powerOff(); public void changeChannel(int channel);&#125;public class GoogleTV implements TV&#123; public void powerOn()&#123;&#125; public void powerOff()&#123;&#125; public void changeChannel(int channel)&#123;&#125;&#125;public class AppleTV implements TV&#123; public void powerOn()&#123;&#125; public void powerOff()&#123;&#125; public void changeChannel(int channel)&#123;&#125;&#125;public abstract class TVRemoteControl&#123; private TV tv; public void setTV(TV tv)&#123; this.tv = tv; &#125; public TV getTV()&#123; return this.tv; &#125; public void powerOn()&#123; implementor.powerOn(); &#125; public void powerOff()&#123; implementor.powerOff(); &#125; public void setChannel(int channel)&#123; implementor.changeChannel(channel); &#125;&#125;public class ConcreteTVRemoteControl extends TVRemoteControl&#123; private int currentChannel; public void nextChannel()&#123; currentChannel++; setChannel(currentChannel); &#125; public void prevChannel()&#123; currentChannel++; setChannel(currentChannel); &#125;&#125;public class BridgeTest &#123; public static void main(String[] args) &#123; TVRemoteControl tvBridge = new TVRemoteControl(); /*使用google TV */ GoogleTV googleTV = new GoogleTV(); tvBridge.setTV(googleTV); tvBridge.setChannel(3); /*使用 Apple TV */ GoogleTV googleTV = new GoogleTV(); tvBridge.setTV(googleTV); tvBridge.setChannel(3); &#125;&#125; 可结合 Strategy、 Adapter 模式来看。]]></content>
