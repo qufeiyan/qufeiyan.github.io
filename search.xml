@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[LeetCode刷题之14.md]]></title>
     <url>%2Fpost%2Ff9dfb861.html</url>
-    <content type="text"><![CDATA[题目 编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串””。 示例1 输入： [“flower”,”flow”,”flight”] 输出： “fl” 示例2 输入： [“dog”,”racecar”,”car”] 输出： “” 解释： 输入不存在公共前缀 说明所有输入只包含小写字母a-z； 实现代码：C++12345678910111213141516171819202122232425262728class Solution&#123;public: string longestCommonPrefix(vector&lt;string&gt;&amp; strs)&#123; int size = strs.size(); if(size == 0)&#123; return ""; &#125; string temp; bool flag = false; for(int j = 0; j &lt; strs[0].size(); j++)&#123; char t = strs[0][j]; for(int i = 0; i &lt; size; i++)&#123; if(strs[i][j] != t || strs[i][j == '\0'])&#123; flag = true; break; &#125; &#125; if(flag)&#123; break; &#125; temp.push_back(t); &#125; return temp; &#125;&#125;;]]></content>
+    <content type="text"><![CDATA[题目 编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串””。 示例112输入： ["flower","flow","flight"]输出： "fl" 示例2123输入： ["dog","racecar","car"]输出： ""解释： 输入不存在公共前缀 说明所有输入只包含小写字母a-z； 实现代码：C++12345678910111213141516171819202122232425262728class Solution&#123;public: string longestCommonPrefix(vector&lt;string&gt;&amp; strs)&#123; int size = strs.size(); if(size == 0)&#123; return ""; &#125; string temp; bool flag = false; for(int j = 0; j &lt; strs[0].size(); j++)&#123; char t = strs[0][j]; for(int i = 0; i &lt; size; i++)&#123; if(strs[i][j] != t || strs[i][j == '\0'])&#123; flag = true; break; &#125; &#125; if(flag)&#123; break; &#125; temp.push_back(t); &#125; return temp; &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
