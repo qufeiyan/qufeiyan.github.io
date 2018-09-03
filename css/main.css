@@ -2103,7 +2103,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #eb85ff;
+  background: #ff9d4d;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3513,4 +3513,17 @@ span#inline-purple {
   vertical-align: baseline;
   border-radius: 0;
   background-color: #9954bb;
+}
+span#inline-purple {
+  display: inline;
+  padding: 0.2em 0.6em 0.3em;
+  font-size: 80%;
+  font-weight: bold;
+  line-height: 1;
+  color: #ff4500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0;
+  background-color: #fff5ee;
 }
