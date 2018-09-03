@@ -155,7 +155,7 @@
 <meta property="og:site_name" content="QuFeiyan&#39;s Hut">
 <meta property="og:description" content="三数之和 给定一个包含n个整数的nums,判断nums中是否存在三个元素a、b、c，使得1a + b + c = 0   找出所有满足条件且不重复的三元组。   注意: 答案中不可以包含重复的三元组。 123456例如，给定数组 nums = [-1,0,1,2,-1,-4],满足要求的三元组集合为：[    [-1,0,1]    [-1,-1,2]] 思路 用双指针法求解。 首先对数组进行升序">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-03T02:15:31.332Z">
+<meta property="og:updated_time" content="2018-09-03T02:20:11.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode刷题之15.md">
 <meta name="twitter:description" content="三数之和 给定一个包含n个整数的nums,判断nums中是否存在三个元素a、b、c，使得1a + b + c = 0   找出所有满足条件且不重复的三元组。   注意: 答案中不可以包含重复的三元组。 123456例如，给定数组 nums = [-1,0,1,2,-1,-4],满足要求的三元组集合为：[    [-1,0,1]    [-1,-1,2]] 思路 用双指针法求解。 首先对数组进行升序">
@@ -436,7 +436,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-03T10:15:31+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-03T10:20:11+08:00">
                 2018-09-03
               </time>
             
@@ -551,7 +551,7 @@
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">例如，给定数组 nums = [<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">-1</span>,<span class="number">-4</span>],</span><br><span class="line">满足要求的三元组集合为：</span><br><span class="line">[</span><br><span class="line">    [<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">    [<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">2</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
 <li>用双指针法求解。<blockquote>
-<p>首先对数组进行升序排列，从第一个数开始遍历，若该数大于0，则无解。否则该数可能满足条件，定义前后两个指针l、r，判断nums[l]+nums[r]+nums[i]是否等于0,若=0,加入解集；若&gt;0，说明nums[l]+nums[r]过大，则向前移动后指针，即r–；反之，说明nums[l]+nums[r]较小，则需要向后移动前指针，即l++。</p>
+<p>首先对数组进行升序排列，从第一个数开始遍历，若该数大于0，则无解。否则该数可能满足条件，定义前后两个指针<code>l</code>、<code>r</code>，判断<code>nums[l]+nums[r]+nums[i]</code>是否等于0,若=0,加入解集；若&gt;0，说明<code>nums[l]+nums[r]</code>过大，则向前移动后指针，即<code>r--</code>；反之，说明<code>nums[l]+nums[r]</code>较小，则需要向后移动前指针，即<code>l++</code>。</p>
 </blockquote>
 </li>
 <li>解决重复问题<blockquote>
@@ -651,6 +651,13 @@
 
         
 
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
         
         </div>
       
@@ -1547,6 +1554,18 @@
   <script src="/lib/needsharebutton/needsharebutton.js"></script>
 
   <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
     
     
   </script>
