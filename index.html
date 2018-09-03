@@ -438,7 +438,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-03T22:00:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-03T22:07:33+08:00">
                 2018-09-03
               </time>
             
@@ -501,7 +501,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  374
+                  375
                 </span>
               
 
@@ -539,16 +539,19 @@
 
       
         
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
-<p>给定一个包含n个整数的数组<code>nums</code>和一个目标值<code>target</code>。找出<code>nums</code>中的三个整数，<br>使得它们的和与<code>target</code>最接近。返回这三个数的和。假定每组输入只存在唯一答案。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如，给定数组nums = [<span class="number">-1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-4</span>],和target = <span class="number">1.</span>与target 最接近的三个数的和为<span class="number">2.</span>(<span class="number">-1</span> + <span class="number">2</span> + <span class="number">1</span> = <span class="number">2</span>).</span><br></pre></td></tr></table></figure></p>
+          <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
+<p>给定一个包含n个整数的数组<code>nums</code>和一个目标值<code>target</code>。找出<code>nums</code>中的三个整数，<br>使得它们的和与<code>target</code>最接近。返回这三个数的和。假定每组输入只存在唯一答案。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">例如，给定数组nums = [<span class="number">-1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-4</span>],和target = <span class="number">1.</span></span><br><span class="line">与target 最接近的三个数的和为<span class="number">2.</span>(<span class="number">-1</span> + <span class="number">2</span> + <span class="number">1</span> = <span class="number">2</span>).</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p><span id="inline-red">用双指针法求解</span></p>
 <blockquote>
-<p>首先对数组进行升序排列（C++ sort默认升序)，然后用数组的前三个元素之和作为预设值，当在数组里确定好第一个数字后，就在剩下的数里找两数之和，再加上第一个数，判断<code>nums[i]+nums[l]+nums[r]</code>与<code>target</code>之差的绝对值是否 &lt;= 预设的三数之和与target的差的绝对值。若是，则更新预设值。然后判断<code>nums[i]+nums[l]+nums[r]</code>与<code>target</code>大小来更新指针，若前者大，说明后指针需要前移，反之，则前指针需要后移。</p>
-</blockquote>
-<h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：<code>C++</code></h1><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">int</span> threeSumClosest(vector&lt;<span class="built_in">int</span>&gt;&amp; nums,<span class="built_in">int</span> <span class="keyword">target</span>)&#123;</span><br><span class="line">        <span class="built_in">int</span> <span class="built_in">size</span> = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">int</span> res;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">size</span> &lt; <span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(nums.begin(),nums.<span class="keyword">end</span>());</span><br><span class="line">        res = nums[<span class="number">0</span>] + nums[<span class="number">1</span>] + nums[<span class="number">2</span>];</span><br><span class="line">        for(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">size</span>-<span class="number">2</span>; i++ )&#123;</span><br><span class="line">            <span class="keyword">if</span>(i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i-<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">int</span> l = i+<span class="number">1</span>, r = <span class="built_in">size</span>-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(l&lt;r&gt;)&#123;</span><br><span class="line">                <span class="built_in">int</span> tempSum = nums[i] + nums[l] + nums[r]; </span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">abs</span>(tempSum - <span class="keyword">target</span>) &lt;= <span class="built_in">abs</span>(res - <span class="keyword">target</span>))&#123;</span><br><span class="line">                    res = tempSum;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(tempSum &gt; <span class="keyword">target</span>)&#123;</span><br><span class="line">                    r--;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    l++;</span><br><span class="line">                &#125;   </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          
+<p>首先对数组进行升序排列（C++ sort默认升序)，然后用数组的前三个元素之和作为预设值，当在数组里确定好第一个数字后，就在剩下的数里找两数之和，再加上第一个数，判断<code>nums[i]+nums[l]+nums[r]</code>与<code>target</code>之差的绝对值是否 &lt;= 预设的三数之和与target的差的绝对值。若是，则更新预设值。然后判断<code>nums[i]+nums[l]+nums[r]</code>与<code>target</code>大小来更新指针，若前者大，说明后指针需要前移，反之，则前指针需要后移。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/8a815e5c.html" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -648,7 +651,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-03T21:49:45+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-03T22:09:07+08:00">
                 2018-09-03
               </time>
             
@@ -749,8 +752,7 @@
 
       
         
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
+          <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
 <p>给定一个包含n个整数的<code>nums</code>,判断<code>nums</code>中是否存在三个元素<em>a</em>、<em>b</em>、<em>c</em>，使得<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a + b + c = 0</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
@@ -768,9 +770,13 @@
 </blockquote>
 </li>
 </ul>
-<h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：<code>C++</code></h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; threeSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">int</span> size = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(size &lt; <span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span> &amp;&amp; nums[i] ==  nums[i<span class="number">-1</span>])&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> l = i+<span class="number">1</span>,r = size<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">                <span class="keyword">int</span> sum = nums[i] + nums[l] + nums[r];</span><br><span class="line">                <span class="keyword">if</span>(sum == <span class="number">0</span>)&#123;</span><br><span class="line">                    res.insert(&#123;nums[i],nums[l],nums[r]&#125;);</span><br><span class="line">                    <span class="keyword">while</span>(l &lt; r &amp;&amp; nums[l] == nums[l+<span class="number">1</span>]) l++;</span><br><span class="line">                    <span class="keyword">while</span>(l &lt; r &amp;&amp; nums[r] == nums[r<span class="number">-1</span>]) r--;</span><br><span class="line">                    l++;</span><br><span class="line">                    r--;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(sum &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                    l++;</span><br><span class="line">                &#125;<span class="keyword">else</span></span><br><span class="line">                    r--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/4163df04.html" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -870,7 +876,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-03T21:48:45+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-03T22:08:19+08:00">
                 2018-09-03
               </time>
             
@@ -971,16 +977,19 @@
 
       
         
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
+          <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
 <p>编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串””。</p>
 </blockquote>
 <h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h2><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入： [<span class="string">"flower"</span>,<span class="string">"flow"</span>,<span class="string">"flight"</span>]</span><br><span class="line">输出： <span class="string">"fl"</span></span><br></pre></td></tr></table></figure>
 <h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h2><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入： [<span class="string">"dog"</span>,<span class="string">"racecar"</span>,<span class="string">"car"</span>]</span><br><span class="line">输出： <span class="string">""</span></span><br><span class="line">解释： 输入不存在公共前缀</span><br></pre></td></tr></table></figure>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>所有输入只包含小写字母<code>a-z</code>；</p>
-<h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：<code>C++</code></h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestCommonPrefix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = strs.size();</span><br><span class="line">        <span class="keyword">if</span>(size == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">string</span> temp;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; strs[<span class="number">0</span>].size(); j++)&#123;</span><br><span class="line">            <span class="keyword">char</span> t = strs[<span class="number">0</span>][j];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(strs[i][j] != t || strs[i][j == <span class="string">'\0'</span>])&#123;</span><br><span class="line">                    flag = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            temp.push_back(t);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/f9dfb861.html" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
