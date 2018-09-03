@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qufeiyan.top/"/>
-  <updated>2018-09-02T09:28:02.724Z</updated>
+  <updated>2018-09-03T02:05:23.960Z</updated>
   <id>http://qufeiyan.top/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode刷题之15.md</title>
+    <link href="http://qufeiyan.top/post/4163df04.html"/>
+    <id>http://qufeiyan.top/post/4163df04.html</id>
+    <published>2018-09-03T00:46:05.000Z</published>
+    <updated>2018-09-03T02:05:23.960Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="三数之和"><a href="#三数之和" class="headerlink" title="三数之和"></a>三数之和</h1><blockquote><p>给定一个包含n个整数的<code>nums</code>,判断<code>nums</code>中是否存在三个元素<em>a</em>、<em>b</em>、<em>c</em>，使得<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a + b + c = 0</span><br></pre></td></tr></table></figure></p></blockquote><blockquote><p>找出所有满足条件且不重复的三元组。</p></blockquote><p><span id="inline-red"> 注意: </span>答案中不可以包含重复的三元组。</p><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">例如，给定数组 nums = [<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">-1</span>,<span class="number">-4</span>],</span><br><span class="line">满足要求的三元组集合为：</span><br><span class="line">[</span><br><span class="line">    [<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">    [<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">2</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul><li>用双指针法求解。<blockquote><p>首先对数组进行升序排列，从第一个数开始遍历，若该数大于0，则无解。否则该数可能满足条件，定义前后两个指针l、r，判断nums[l]+nums[r]  +nums[i] 是否等于0,若=0,加入解集，若&gt;0，说明nums[l]+nums[r]过大，则向前移动后指针，即r–，反之，说明nums[l]+nums[r]较小，则需要向后移动前指针，即l++。</p></blockquote></li><li>解决重复问题<blockquote><p>由于数组已经升序排列，只需要判断相邻两个数是否相等，如果相等则移动指针。</p></blockquote></li></ul><h2 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：<code>C++</code></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; threeSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">int</span> size = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(size &lt; <span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span> &amp;&amp; nums[i] ==  nums[i<span class="number">-1</span>])&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> l = i+<span class="number">1</span>,r = size<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">                <span class="keyword">int</span> sum = nums[i] + nums[l] + nums[r];</span><br><span class="line">                <span class="keyword">if</span>(sum = <span class="number">0</span>)&#123;</span><br><span class="line">                    res.insert(&#123;nums[i],nums[l],nums[r]&#125;);</span><br><span class="line">                    <span class="keyword">while</span>(l &lt; r &amp;&amp; nums[l] == nums[l+<span class="number">1</span>] ) l++;</span><br><span class="line">                    <span class="keyword">while</span>(l &lt; r &amp;&amp; nums[r] == nums[r<span class="number">-1</span>]) r--;</span><br><span class="line">                    l++;</span><br><span class="line">                    r--;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(sum &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                    l++;</span><br><span class="line">                &#125;<span class="keyword">else</span></span><br><span class="line">                    r--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;三数之和&quot;&gt;&lt;a href=&quot;#三数之和&quot; class=&quot;headerlink&quot; title=&quot;三数之和&quot;&gt;&lt;/a&gt;三数之和&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个包含n个整数的&lt;code&gt;nums&lt;/code&gt;,判断&lt;code&gt;nums&lt;/code&gt;中
+      
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
+    
+    
+      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode刷题之14.md</title>
