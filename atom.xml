@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qufeiyan.top/"/>
-  <updated>2018-09-03T14:17:32.912Z</updated>
+  <updated>2018-09-04T09:38:06.401Z</updated>
   <id>http://qufeiyan.top/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode之电话号码的字母组合（17）</title>
+    <link href="http://qufeiyan.top/post/d972dfa3.html"/>
+    <id>http://qufeiyan.top/post/d972dfa3.html</id>
+    <published>2018-09-04T07:44:09.000Z</published>
+    <updated>2018-09-04T09:38:06.401Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。<br>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p></blockquote><p><img src="http://jijian-image.oss-cn-beijing.aliyuncs.com/18-9-4/87924053.jpg" alt=""></p><h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="string">"23"</span></span><br><span class="line">输出：[<span class="string">"ad"</span>, <span class="string">"ae"</span>, <span class="string">"af"</span>, <span class="string">"bd"</span>, <span class="string">"be"</span>, <span class="string">"bf"</span>,<span class="string">"cd"</span>, <span class="string">"ce"</span>, <span class="string">"cf"</span>].</span><br></pre></td></tr></table></figure><h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><blockquote><p>尽管上面的答案是按字典序排列的，但是你可以<span id="inline-red">任意选择答案输出</span>的顺序。</p></blockquote><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><blockquote><p>因为不知道输入数字字符串的长度，考虑用递归实现。<br>注意递归的<code>终止条件</code>。<br><a id="more"></a></p></blockquote><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>：</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; letterCombinations(<span class="built_in">string</span> digits)&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; numStrVector = <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;(&#123;</span><br><span class="line">            &#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"g"</span>,<span class="string">"h"</span>,<span class="string">"i"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"j"</span>,<span class="string">"k"</span>,<span class="string">"l"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"m"</span>,<span class="string">"n"</span>,<span class="string">"o"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"p"</span>,<span class="string">"q"</span>,<span class="string">"r"</span>,<span class="string">"s"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"t"</span>,<span class="string">"u"</span>,<span class="string">"v"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"w"</span>,<span class="string">"x"</span>,<span class="string">"y"</span>,<span class="string">"z"</span>&#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</span><br><span class="line">        <span class="keyword">if</span>(digits.size() == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; firstStrVector = numStrVector[digits[<span class="number">0</span>] - <span class="number">48</span> - <span class="number">2</span>];</span><br><span class="line">        <span class="keyword">if</span>(digits.size() == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> firstStrVector;</span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; leftStrVector = letterCombinations(digits.substr(<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> s : firstStrVector)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> left : leftStrVector)&#123;</span><br><span class="line">                res.push_back(s + left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。&lt;br&gt;给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;http://jijian-image.oss-cn-beijing.aliyuncs.com/18-9-4/87924053.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;示例：&quot;&gt;&lt;a href=&quot;#示例：&quot; class=&quot;headerlink&quot; title=&quot;示例：&quot;&gt;&lt;/a&gt;示例：&lt;/h2&gt;&lt;figure class=&quot;highlight prolog&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入：&lt;span class=&quot;string&quot;&gt;&quot;23&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出：[&lt;span class=&quot;string&quot;&gt;&quot;ad&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;ae&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;af&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;bd&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;be&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;bf&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;cd&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;ce&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;cf&quot;&lt;/span&gt;].&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;说明：&quot;&gt;&lt;a href=&quot;#说明：&quot; class=&quot;headerlink&quot; title=&quot;说明：&quot;&gt;&lt;/a&gt;说明：&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;尽管上面的答案是按字典序排列的，但是你可以&lt;span id=&quot;inline-red&quot;&gt;任意选择答案输出&lt;/span&gt;的顺序。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;因为不知道输入数字字符串的长度，考虑用递归实现。&lt;br&gt;注意递归的&lt;code&gt;终止条件&lt;/code&gt;。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
+    
+    
+      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="字符串" scheme="http://qufeiyan.top/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+      <category term="递归" scheme="http://qufeiyan.top/tags/%E9%80%92%E5%BD%92/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode之最接近的三数之和（16）</title>
