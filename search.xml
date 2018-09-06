@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[LeetCode之最长回文子串（5）]]></title>
     <url>%2Fpost%2Feef3535.html</url>
-    <content type="text"><![CDATA[题目 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为1000。 示例 1：123输入: "babad"输出: "bab"注意: "aba"也是一个有效答案。 示例 2：12输入: "cbbd"输出: "bb" 分析 用动态规划思想求解。根据回文的特点，可得如下状态转移方程：$$DP(i,j)=\begin{cases} true, &amp; i=j\ str(i)==str(j), &amp; i=j+1\ str(i)==str[j] &amp;&amp; DP(i+1,j-1) \end{cases}$$ $$DP(i,j)=\begin{cases} true, &amp; i=j\\ str(i)==str(j), &amp; i=j+1\\ str(i)==str[j], &amp; i&gt;j+1 \end{cases}$$ 实现代码：C++123456789101112131415161718192021222324252627class Solution &#123;public: string longestPalindrome(string s) &#123; int size = s.size(); if(size == 0)&#123; return ""; &#125; int maxSize = 1; int start = 0; bool DP[size][size]; for(int j = 0;j &lt; size;j++)&#123; for(int i = 0;i &lt;= j;i++)&#123; if(j &lt;= i+1)&#123; DP[i][j] = (s[i]==s[j]); &#125;else&#123; DP[i][j] = (s[i]==s[j] &amp;&amp; DP[i+1][j-1]); &#125; if(DP[i][j] &amp;&amp; maxSize &lt; j-i+1)&#123; maxSize = j-i+1; start = i; &#125; &#125; &#125; return s.substr(start,maxSize); &#125;&#125;;]]></content>
+    <content type="text"><![CDATA[题目 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为1000。 示例 1：123输入: "babad"输出: "bab"注意: "aba"也是一个有效答案。 示例 2：12输入: "cbbd"输出: "bb" 分析 用动态规划思想求解。根据回文的特点，可得如下状态转移方程： $$DP(i,j)=\begin{cases} true, &amp; i=j\ str(i)==str(j), &amp; i=j+1\ str(i)==str[j], &amp; i&gt;j+1 \end{cases}$$ 实现代码：C++123456789101112131415161718192021222324252627class Solution &#123;public: string longestPalindrome(string s) &#123; int size = s.size(); if(size == 0)&#123; return ""; &#125; int maxSize = 1; int start = 0; bool DP[size][size]; for(int j = 0;j &lt; size;j++)&#123; for(int i = 0;i &lt;= j;i++)&#123; if(j &lt;= i+1)&#123; DP[i][j] = (s[i]==s[j]); &#125;else&#123; DP[i][j] = (s[i]==s[j] &amp;&amp; DP[i+1][j-1]); &#125; if(DP[i][j] &amp;&amp; maxSize &lt; j-i+1)&#123; maxSize = j-i+1; start = i; &#125; &#125; &#125; return s.substr(start,maxSize); &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -21,9 +21,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>哈希表</tag>
         <tag>数组</tag>
         <tag>算法</tag>
-        <tag>哈希表</tag>
       </tags>
   </entry>
   <entry>
@@ -37,6 +37,19 @@
         <tag>数组</tag>
         <tag>算法</tag>
         <tag>双指针法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode之电话号码的字母组合（17）]]></title>
+    <url>%2Fpost%2Fd972dfa3.html</url>
+    <content type="text"><![CDATA[题目 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。 示例：12输入："23"输出：["ad", "ae", "af", "bd", "be", "bf","cd", "ce", "cf"]. 说明： 尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。 分析 因为不知道输入数字字符串的长度，考虑用递归实现。注意递归的终止条件。 实现代码：C++123456789101112131415161718192021222324252627282930313233class Solution&#123;public： vector&lt;string&gt; letterCombinations(string digits)&#123; vector&lt;vector&lt;string&gt;&gt; numStrVector = vector&lt;vector&lt;string&gt;&gt;(&#123; &#123;"a","b","c"&#125;, &#123;"d","e","f"&#125;, &#123;"g","h","i"&#125;, &#123;"j","k","l"&#125;, &#123;"m","n","o"&#125;, &#123;"p","q","r","s"&#125;, &#123;"t","u","v"&#125;, &#123;"w","x","y","z"&#125; &#125;); vector&lt;string&gt; res; if(digits.size() == 0)&#123; return res; &#125; vector&lt;string&gt; firstStrVector = numStrVector[digits[0] - 48 - 2]; if(digits.size() == 1)&#123; return firstStrVector; &#125; vector&lt;string&gt; leftStrVector = letterCombinations(digits.substr(1)); for(auto s : firstStrVector)&#123; for(auto left : leftStrVector)&#123; res.push_back(s + left); &#125; &#125; return res; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>字符串</tag>
+        <tag>递归</tag>
       </tags>
   </entry>
   <entry>
