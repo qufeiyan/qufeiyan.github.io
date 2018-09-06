@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode之合并两个有序数组（88）]]></title>
+    <url>%2Fpost%2F5d771dc9.html</url>
+    <content type="text"><![CDATA[题目 给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使得 num1 成为一个有序数组。 说明: 初始化 nums1 和 nums2 的元素数量分别为 m 和 n。 你可以假设 nums1 有足够的空间（空间大小大于或等于 m + n）来保存 nums2 中的元素。 示例:12345输入:nums1 = [1,2,3,0,0,0], m = 3nums2 = [2,5,6], n = 3输出: [1,2,2,3,5,6] 分析 有序数组为升序。 实现代码：C++12345678910111213141516class Solution &#123;public: void merge(vector&lt;int&gt;&amp; nums1, int m, vector&lt;int&gt;&amp; nums2, int n) &#123; vector&lt;int&gt; nums(m+n); int i = 0, j = 0, k = 0; while(i&lt;m &amp;&amp; j&lt;n)&#123; if(nums1[i] &lt; nums2[j])&#123; nums[k++] = nums1[i++]; &#125;else nums[k++] = nums2[j++]; &#125; while(i &lt; m) nums[k++] = nums1[i++]; while(j &lt; n) nums[k++] = nums2[j++]; nums1.assign(nums.begin(),nums.end()); &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+        <category>Tencent</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>归并排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeeCode之盛最多水的容器（11）]]></title>
     <url>%2Fpost%2F46a7e20d.html</url>
     <content type="text"><![CDATA[题目 给定 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。 说明：你不能倾斜容器，且 n 的值至少为 2。 图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。 示例12输入: [1,8,6,2,5,4,8,3,7]输出: 49 分析 定义l、r两个指针分别指向数组的左右两端，然后向中间搜索。 如上图示，容器面积取决于最短的线。则每次面积更新公式为 min(height[l],height[r])*(r-i)。 每次更新指针时，固定长线，移动短线。 实现代码：C++123456789101112131415class Solution &#123;public: int maxArea(vector&lt;int&gt;&amp; height) &#123; int res = 0; int l = 0,r = height.size()-1; while(l &lt; r)&#123; res = max(res,min(height[l],height[r])*(r-l)); if(height[l]&lt;height[r])&#123; l++; &#125;else r--; &#125; return res; &#125;&#125;;]]></content>
@@ -61,8 +74,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>双指针法</tag>
         <tag>算法</tag>
+        <tag>双指针法</tag>
       </tags>
   </entry>
   <entry>
@@ -87,8 +100,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>双指针法</tag>
         <tag>算法</tag>
+        <tag>双指针法</tag>
       </tags>
   </entry>
   <entry>
@@ -100,8 +113,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>双指针法</tag>
         <tag>算法</tag>
+        <tag>双指针法</tag>
       </tags>
   </entry>
   <entry>
