@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qufeiyan.top/"/>
-  <updated>2018-09-06T09:56:57.381Z</updated>
+  <updated>2018-09-06T11:22:51.148Z</updated>
   <id>http://qufeiyan.top/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeeCode之盛最多水的容器（11）</title>
+    <link href="http://qufeiyan.top/post/46a7e20d.html"/>
+    <id>http://qufeiyan.top/post/46a7e20d.html</id>
+    <published>2018-09-06T11:07:53.000Z</published>
+    <updated>2018-09-06T11:22:51.148Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>给定 <code>n</code> 个非负整数 <code>a1，a2，...，an</code>，每个数代表坐标中的一个点 <code>(i, ai)</code> 。在坐标内画 <code>n</code> 条垂直线，垂直线 <code>i</code> 的两个端点分别为 <code>(i, ai)</code> 和 <code>(i, 0)</code>。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p></blockquote><p><span id="inline-red">说明：</span>你不能倾斜容器，且 <code>n</code> 的值至少为 <code>2</code>。</p><p><img src="http://jijian-image.oss-cn-beijing.aliyuncs.com/18-9-6/19331066.jpg" alt=""><br>图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。</p><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [<span class="number">1,8,6,2</span>,<span class="number">5,4,8,3</span>,<span class="number">7</span>]</span><br><span class="line">输出: <span class="number">49</span></span><br></pre></td></tr></table></figure><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><ol><li>定义<code>l</code>、<code>r</code>两个指针分别指向数组的左右两端，然后向中间搜索。</li><li>如上图示，容器面积取决于最短的线。则每次面积更新公式为 <code>min(height[l],height[r])*(r-i)</code>。</li><li>每次更新指针时，固定长线，移动短线。</li></ol><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>,r = height.size()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">            res = max(res,min(height[l],height[r])*(r-l));</span><br><span class="line">            <span class="keyword">if</span>(height[l]&lt;height[r])&#123;</span><br><span class="line">                l++;</span><br><span class="line">            &#125;<span class="keyword">else</span></span><br><span class="line">                r--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;给定 &lt;code&gt;n&lt;/code&gt; 个非负整数 &lt;code&gt;a1，a2，...，an&lt;/code&gt;，每个数代表坐标
+      
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
+    
+      <category term="Tencent" scheme="http://qufeiyan.top/categories/LeetCode/Tencent/"/>
+    
+    
+      <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode之字符串转整数(atoi)（8）</title>
@@ -110,11 +140,11 @@
       <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
     
     
-      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
-    
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
     
   </entry>
   
@@ -146,9 +176,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
+    
+      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -212,9 +242,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
+    
+      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -255,9 +285,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
+    
+      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
