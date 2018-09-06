@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[LeetCode之最长回文子串（5）]]></title>
     <url>%2Fpost%2Feef3535.html</url>
-    <content type="text"><![CDATA[题目 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为1000。 示例 1：123输入: "babad"输出: "bab"注意: "aba"也是一个有效答案。 示例 2：12输入: "cbbd"输出: "bb" 分析 用动态规划思想求解。根据回文的特点，可得如下状态转移方程：$$DP(i,j)=\begin{cases} true, &amp; i=j\ str(i)==str(j), &amp; i=j+1\ str(i)==str[j] &amp;&amp; DP(i+1,j-1) \end{cases}$$ $$DP(i,j)=\begin{cases} true, &amp; i=j\\ str(i)==str(j), &amp; i=j+1\\ str(i)==str[j] &amp;&amp; DP(i+1,j-1) \end{cases}$$ 实现代码：C++123456789101112131415161718192021222324252627class Solution &#123;public: string longestPalindrome(string s) &#123; int size = s.size(); if(size == 0)&#123; return ""; &#125; int maxSize = 1; int start = 0; bool DP[size][size]; for(int j = 0;j &lt; size;j++)&#123; for(int i = 0;i &lt;= j;i++)&#123; if(j &lt;= i+1)&#123; DP[i][j] = (s[i]==s[j]); &#125;else&#123; DP[i][j] = (s[i]==s[j] &amp;&amp; DP[i+1][j-1]); &#125; if(DP[i][j] &amp;&amp; maxSize &lt; j-i+1)&#123; maxSize = j-i+1; start = i; &#125; &#125; &#125; return s.substr(start,maxSize); &#125;&#125;;]]></content>
+    <content type="text"><![CDATA[题目 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为1000。 示例 1：123输入: "babad"输出: "bab"注意: "aba"也是一个有效答案。 示例 2：12输入: "cbbd"输出: "bb" 分析 用动态规划思想求解。根据回文的特点，可得如下状态转移方程：$$DP(i,j)=\begin{cases} true, &amp; i=j\ str(i)==str(j), &amp; i=j+1\ str(i)==str[j] &amp;&amp; DP(i+1,j-1) \end{cases}$$ $$DP(i,j)=\begin{cases} true, &amp; i=j\\ str(i)==str(j), &amp; i=j+1\\ str(i)==str[j], &amp; i&gt;j+1 \end{cases}$$ 实现代码：C++123456789101112131415161718192021222324252627class Solution &#123;public: string longestPalindrome(string s) &#123; int size = s.size(); if(size == 0)&#123; return ""; &#125; int maxSize = 1; int start = 0; bool DP[size][size]; for(int j = 0;j &lt; size;j++)&#123; for(int i = 0;i &lt;= j;i++)&#123; if(j &lt;= i+1)&#123; DP[i][j] = (s[i]==s[j]); &#125;else&#123; DP[i][j] = (s[i]==s[j] &amp;&amp; DP[i+1][j-1]); &#125; if(DP[i][j] &amp;&amp; maxSize &lt; j-i+1)&#123; maxSize = j-i+1; start = i; &#125; &#125; &#125; return s.substr(start,maxSize); &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -21,9 +21,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>哈希表</tag>
         <tag>数组</tag>
         <tag>算法</tag>
+        <tag>哈希表</tag>
       </tags>
   </entry>
   <entry>
