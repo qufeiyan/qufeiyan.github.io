@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode之两数相加(2)]]></title>
+    <url>%2Fpost%2Fa010aa05.html</url>
+    <content type="text"><![CDATA[题目 给定两个非空链表来表示两个非负整数。位数按照逆序方式存储,它们的每个节点只存储单个数字。将两数相加返回一个新的链表。 你可以假设除了数字 0 之外，这两个数字都不会以零开头。 示例：123输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)输出：7 -&gt; 0 -&gt; 8原因：342 + 465 = 807 分析 如上图示： 首先考虑两个数的位数，假设俩数位数不一致，为了能够更新新链表，可将不足位数补0。 其次考虑进位问题，若进位发生在最后一位之前，即没有产生新的位数，设置 carry 位，每次相加时候加上上次相加结果的carry , 即 sum = (x + y + carry)%10即为新链表的位数，然后利用 carry = (x + y + carry)/10更新carry。 若最后一次相加产生进位，则表示产生新位数，需要新建结点附在新链表后面。 我们使用哑结点来简化代码。如果没有哑结点，则必须编写额外的条件语句来初始化表头的值。 实现代码：C++123456789101112131415161718192021222324252627282930/** * Definition for singly-linked list. * struct ListNode &#123; * int val; * ListNode *next; * ListNode(int x) : val(x), next(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) &#123; ListNode* dummyNode = new ListNode(0); ListNode* temp = dummyNode; int carry = 0; while(l1 || l2)&#123; ListNode* newNode = new ListNode(0); int x = l1 ? l1-&gt;val : 0; int y = l2 ? l2-&gt;val : 0; newNode-&gt;val = (x+y+carry)%10; carry = (x+y+carry)/10; if(l1 != NULL) l1 = l1-&gt;next; if(l2 != NULL) l2 = l2-&gt;next; temp-&gt;next = newNode; temp = temp-&gt;next; &#125; if(carry &gt; 0) temp-&gt;next = new ListNode(carry); return dummyNode-&gt;next; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>链表</tag>
+        <tag>哑结点</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode之反转链表(206)]]></title>
     <url>%2Fpost%2F4a74759.html</url>
     <content type="text"><![CDATA[题目 反转一个单链表。 示例:12输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL 进阶: 你可以迭代或递归地反转链表。你能否用两种方法解决这道题？ 分析 迭代法 如图所示，初始化一个newHead指针，用来作为反转后链表的头。第一次迭代时，将原来的 head 指针的后继，即 head-&gt;next作为新一轮的 head，并将 newHead 更新为原来的 head,原来 head 的后继变为其前驱，即更新前的newHead。为防止 head 丢失，应设一个 temp指针保存当前的 head。 实现代码：C++1234567891011121314151617181920212223/** * Definition for singly-linked list. * struct ListNode &#123; * int val; * ListNode *next; * ListNode(int x) : val(x), next(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: ListNode* reverseList(ListNode* head) &#123; if(head == NULL || head-&gt;next == NULL) return head; ListNode* newHead = NULL; while(head)&#123; ListNode* temp = head; head = head-&gt;next; temp-&gt;next = newHead; newHead = temp ; &#125; return newHead; &#125;&#125;; 递归法 迭代法是从前往后更新链表，递归法则从后往前倒推。如下图示。 在最后一级递归中，按照递归终止条件，返回的是表尾，而此时，对应的表头节点为 head-&gt;next,然后进行反转操作。反转单个节点：将(``head->next``)的后继指针（``head->next->next``）变为其前驱(``head``)。并断开其原先的前驱。12345678910111213141516171819202122# 实现代码：C++``` C++/** * Definition for singly-linked list. * struct ListNode &#123; * int val; * ListNode *next; * ListNode(int x) : val(x), next(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: ListNode* reverseList(ListNode* head) &#123; if(head == NULL || head-&gt;next == NULL) return head; ListNode* newHead = reverseList(head-&gt;next); head-&gt;next-&gt;next = head; head-next = NULL; return newHead; &#125;&#125;;]]></content>

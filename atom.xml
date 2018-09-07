@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qufeiyan.top/"/>
-  <updated>2018-09-07T07:05:34.353Z</updated>
+  <updated>2018-09-07T09:51:48.144Z</updated>
   <id>http://qufeiyan.top/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode之两数相加(2)</title>
+    <link href="http://qufeiyan.top/post/a010aa05.html"/>
+    <id>http://qufeiyan.top/post/a010aa05.html</id>
+    <published>2018-09-07T09:05:42.000Z</published>
+    <updated>2018-09-07T09:51:48.144Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>给定两个非空链表来表示两个非负整数。位数按照逆序方式存储,<br>它们的每个节点只存储单个数字。将两数相加返回一个新的链表。</p></blockquote><p>你可以假设除了数字 0 之外，这两个数字都不会以零开头。</p><p>示例：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：(<span class="number">2</span> -&gt; <span class="number">4</span> -&gt; <span class="number">3</span>) + (<span class="number">5</span> -&gt; <span class="number">6</span> -&gt; <span class="number">4</span>)</span><br><span class="line">输出：<span class="number">7</span> -&gt; <span class="number">0</span> -&gt; <span class="number">8</span></span><br><span class="line">原因：<span class="number">342</span> + <span class="number">465</span> = <span class="number">807</span></span><br></pre></td></tr></table></figure></p><p><img src="http://jijian-image.oss-cn-beijing.aliyuncs.com/18-9-7/67430175.jpg" alt=""></p><a id="more"></a><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><blockquote><p>如上图示：</p><ol><li>首先考虑两个数的位数，假设俩数位数不一致，为了能够更新新链表，可将不足位数补0。</li><li>其次考虑进位问题，若进位发生在最后一位之前，即没有产生新的位数，设置 <code>carry</code> 位，<br>每次相加时候加上上次相加结果的<code>carry</code> , 即 <code>sum = (x + y + carry)%10</code>即为新链表的位数，然后利用 <code>carry = (x + y + carry)/10</code>更新<code>carry</code>。</li><li>若最后一次相加产生进位，则表示产生新位数，需要新建结点附在新链表后面。</li><li>我们使用哑结点来简化代码。如果没有哑结点，则必须编写额外的条件语句来初始化表头的值。</li></ol></blockquote><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode* dummyNode = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        ListNode* temp = dummyNode;</span><br><span class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l1 || l2)&#123;</span><br><span class="line">            ListNode* newNode = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">            <span class="keyword">int</span> x = l1 ? l1-&gt;val : <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> y = l2 ? l2-&gt;val : <span class="number">0</span>;</span><br><span class="line">            newNode-&gt;val = (x+y+carry)%<span class="number">10</span>;</span><br><span class="line">            carry = (x+y+carry)/<span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span>(l1 != <span class="literal">NULL</span>) l1 = l1-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(l2 != <span class="literal">NULL</span>) l2 = l2-&gt;next;</span><br><span class="line">            temp-&gt;next = newNode;</span><br><span class="line">            temp = temp-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(carry &gt; <span class="number">0</span>)</span><br><span class="line">            temp-&gt;next = <span class="keyword">new</span> ListNode(carry);</span><br><span class="line">        <span class="keyword">return</span> dummyNode-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;给定两个非空链表来表示两个非负整数。位数按照逆序方式存储,&lt;br&gt;它们的每个节点只存储单个数字。将两数相加返回一个新的链表。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;你可以假设除了数字 0 之外，这两个数字都不会以零开头。&lt;/p&gt;
+&lt;p&gt;示例：&lt;br&gt;&lt;figure class=&quot;highlight lsl&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入：(&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; -&amp;gt; &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt; -&amp;gt; &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;) + (&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt; -&amp;gt; &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt; -&amp;gt; &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出：&lt;span class=&quot;number&quot;&gt;7&lt;/span&gt; -&amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; -&amp;gt; &lt;span class=&quot;number&quot;&gt;8&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;原因：&lt;span class=&quot;number&quot;&gt;342&lt;/span&gt; + &lt;span class=&quot;number&quot;&gt;465&lt;/span&gt; = &lt;span class=&quot;number&quot;&gt;807&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://jijian-image.oss-cn-beijing.aliyuncs.com/18-9-7/67430175.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
+    
+    
+      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="链表" scheme="http://qufeiyan.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+      <category term="哑结点" scheme="http://qufeiyan.top/tags/%E5%93%91%E7%BB%93%E7%82%B9/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode之反转链表(206)</title>
