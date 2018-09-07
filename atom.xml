@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qufeiyan.top/"/>
-  <updated>2018-09-07T09:51:48.144Z</updated>
+  <updated>2018-09-07T11:46:35.152Z</updated>
   <id>http://qufeiyan.top/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>LeetCode之合并两个有序链表</title>
+    <link href="http://qufeiyan.top/post/5fd4a75a.html"/>
+    <id>http://qufeiyan.top/post/5fd4a75a.html</id>
+    <published>2018-09-07T11:43:54.000Z</published>
+    <updated>2018-09-07T11:46:35.152Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
+    
+    
+      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="链表" scheme="http://qufeiyan.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+      <category term="归并排序" scheme="http://qufeiyan.top/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>LeetCode之两数相加(2)</title>
     <link href="http://qufeiyan.top/post/a010aa05.html"/>
     <id>http://qufeiyan.top/post/a010aa05.html</id>
     <published>2018-09-07T09:05:42.000Z</published>
-    <updated>2018-09-07T09:51:48.144Z</updated>
+    <updated>2018-09-07T09:52:32.457Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>给定两个非空链表来表示两个非负整数。位数按照逆序方式存储,<br>它们的每个节点只存储单个数字。将两数相加返回一个新的链表。</p></blockquote><p>你可以假设除了数字 0 之外，这两个数字都不会以零开头。</p><p>示例：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：(<span class="number">2</span> -&gt; <span class="number">4</span> -&gt; <span class="number">3</span>) + (<span class="number">5</span> -&gt; <span class="number">6</span> -&gt; <span class="number">4</span>)</span><br><span class="line">输出：<span class="number">7</span> -&gt; <span class="number">0</span> -&gt; <span class="number">8</span></span><br><span class="line">原因：<span class="number">342</span> + <span class="number">465</span> = <span class="number">807</span></span><br></pre></td></tr></table></figure></p><p><img src="http://jijian-image.oss-cn-beijing.aliyuncs.com/18-9-7/67430175.jpg" alt=""></p><a id="more"></a><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><blockquote><p>如上图示：</p><ol><li>首先考虑两个数的位数，假设俩数位数不一致，为了能够更新新链表，可将不足位数补0。</li><li>其次考虑进位问题，若进位发生在最后一位之前，即没有产生新的位数，设置 <code>carry</code> 位，<br>每次相加时候加上上次相加结果的<code>carry</code> , 即 <code>sum = (x + y + carry)%10</code>即为新链表的位数，然后利用 <code>carry = (x + y + carry)/10</code>更新<code>carry</code>。</li><li>若最后一次相加产生进位，则表示产生新位数，需要新建结点附在新链表后面。</li><li>我们使用哑结点来简化代码。如果没有哑结点，则必须编写额外的条件语句来初始化表头的值。</li></ol></blockquote><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode* dummyNode = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        ListNode* temp = dummyNode;</span><br><span class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l1 || l2)&#123;</span><br><span class="line">            ListNode* newNode = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">            <span class="keyword">int</span> x = l1 ? l1-&gt;val : <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> y = l2 ? l2-&gt;val : <span class="number">0</span>;</span><br><span class="line">            newNode-&gt;val = (x+y+carry)%<span class="number">10</span>;</span><br><span class="line">            carry = (x+y+carry)/<span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span>(l1 != <span class="literal">NULL</span>) l1 = l1-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(l2 != <span class="literal">NULL</span>) l2 = l2-&gt;next;</span><br><span class="line">            temp-&gt;next = newNode;</span><br><span class="line">            temp = temp-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(carry &gt; <span class="number">0</span>)</span><br><span class="line">            temp-&gt;next = <span class="keyword">new</span> ListNode(carry);</span><br><span class="line">        <span class="keyword">return</span> dummyNode-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -272,9 +294,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
-    
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
     
   </entry>
   
@@ -338,9 +360,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
-    
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
     
   </entry>
   
@@ -381,9 +403,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
-    
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
     
   </entry>
   
