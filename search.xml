@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode之合并K个排序链表（23）]]></title>
+    <url>%2Fpost%2Fe4a3f7c3.html</url>
+    <content type="text"><![CDATA[题目 合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。 示例:输入:123456[ 1-&gt;4-&gt;5, 1-&gt;3-&gt;4, 2-&gt;6]输出: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6 分析 是合并两个排序链表问题的推广，可用归并排序。用双指针l、r分别指向lists头尾，每两个表合并一次，将结果存到lists头，然后移动l、r直至 l &lt; r 不成立。然后将 l 指针重新指向lists头，即指向两路归并后的头，开始下次归并。直至l == r,归并结束。结果保存在lists[0]里。 实现代码：C++1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * Definition for singly-linked list. * struct ListNode &#123; * int val; * ListNode *next; * ListNode(int x) : val(x), next(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) &#123; int size = lists.size(); if(size == 0)&#123; return NULL; &#125; int begin = 0,end = size-1; while(end != 0)&#123; while(begin &lt; end)&#123; lists[begin] = mergeTwoLists(lists[begin],lists[end]); begin++; end--; &#125; begin = 0; &#125; return lists[0]; &#125; ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) &#123; ListNode *dummyHead = new ListNode(0); ListNode *temp = dummyHead; ListNode *i = l1,*j = l2; while(i &amp;&amp; j)&#123; if(i-&gt;val &lt; j-&gt;val)&#123; temp-&gt;next = i; temp = temp-&gt;next; i = i-&gt;next; &#125;else&#123; temp-&gt;next = j; temp = temp-&gt;next; j = j-&gt;next; &#125; &#125; temp-&gt;next = i ? i : j; return dummyHead-&gt;next; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>排序链表</tag>
+        <tag>归并排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode之合并两个有序链表]]></title>
     <url>%2Fpost%2F5fd4a75a.html</url>
     <content type="text"><![CDATA[题目 将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 示例：12输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4 分析 归并排序，原理与 合并两个有序数组相似。 实现代码：C++1234567891011121314151617181920212223242526272829/** * Definition for singly-linked list. * struct ListNode &#123; * int val; * ListNode *next; * ListNode(int x) : val(x), next(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) &#123; ListNode *dummyHead = new ListNode(0); ListNode *temp = dummyHead; ListNode *i = l1,*j = l2; while(i &amp;&amp; j)&#123; if(i-&gt;val &lt; j-&gt;val)&#123; temp-&gt;next = i; temp = temp-&gt;next; i = i-&gt;next; &#125;else&#123; temp-&gt;next = j; temp = temp-&gt;next; j = j-&gt;next; &#125; &#125; temp-&gt;next = i ? i : j; return dummyHead-&gt;next; &#125;&#125;;]]></content>
@@ -98,8 +111,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>哈希表</tag>
         <tag>数组</tag>
+        <tag>哈希表</tag>
         <tag>算法</tag>
       </tags>
   </entry>
@@ -112,8 +125,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>算法</tag>
         <tag>双指针法</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -138,8 +151,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>算法</tag>
         <tag>双指针法</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -151,8 +164,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>算法</tag>
         <tag>双指针法</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
