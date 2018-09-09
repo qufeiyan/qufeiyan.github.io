@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qufeiyan.top/"/>
-  <updated>2018-09-09T12:22:24.580Z</updated>
+  <updated>2018-09-09T12:57:47.576Z</updated>
   <id>http://qufeiyan.top/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode之回文数（9）</title>
+    <link href="http://qufeiyan.top/post/1c977bfe.html"/>
+    <id>http://qufeiyan.top/post/1c977bfe.html</id>
+    <published>2018-09-09T12:47:44.000Z</published>
+    <updated>2018-09-09T12:57:47.576Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p></blockquote><h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: 121</span></span><br><span class="line"><span class="section">输出: true</span></span><br></pre></td></tr></table></figure><h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: -121</span></span><br><span class="line"><span class="section">输出: false</span></span><br><span class="line"><span class="section">解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span></span><br></pre></td></tr></table></figure><h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例 3:"></a>示例 3:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: 10</span></span><br><span class="line"><span class="section">输出: false</span></span><br><span class="line"><span class="section">解释: 从右向左读, 为 01 。因此它不是一个回文数。</span></span><br></pre></td></tr></table></figure><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><blockquote><p>根据题示，显然负数不是回文数。根据<a href="http://qufeiyan.top/post/d68d470b.html">反转整数</a>，判断反转后数值是否一致即可。</p></blockquote><p>实现代码：C++<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x &lt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> rvs = reverseInt(x);</span><br><span class="line">        <span class="keyword">if</span>(rvs == x)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">reverseInt</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">bool</span> isPositive = x &gt; <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(!isPositive)&#123;</span><br><span class="line">            x = -x;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            res = res * <span class="number">10</span> + x % <span class="number">10</span>;</span><br><span class="line">            x = x/<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(res &gt; INT_MAX)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> isPositive ? res : -res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。&lt;/p&gt;
+&lt;/blockq
+      
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
+    
+    
+      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="数字" scheme="http://qufeiyan.top/tags/%E6%95%B0%E5%AD%97/"/>
+    
+      <category term="Tencent" scheme="http://qufeiyan.top/tags/Tencent/"/>
+    
+      <category term="回文" scheme="http://qufeiyan.top/tags/%E5%9B%9E%E6%96%87/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode之反转整数（7）</title>
@@ -623,36 +656,6 @@
 &lt;li&gt;这些概念的实现方式有变化。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;要点&lt;/strong&gt;：在需求定义期间，应该尽早而且经常地考虑变化。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="编程思想" scheme="http://qufeiyan.top/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/"/>
-    
-    
-      <category term="设计模式" scheme="http://qufeiyan.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式之Proxy模式</title>
-    <link href="http://qufeiyan.top/post/ae91a8e6.html"/>
-    <id>http://qufeiyan.top/post/ae91a8e6.html</id>
-    <published>2018-08-29T08:19:39.000Z</published>
-    <updated>2018-08-31T08:29:03.343Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Proxy-模式"><a href="#Proxy-模式" class="headerlink" title="Proxy 模式"></a>Proxy 模式</h1><h2 id="意图"><a href="#意图" class="headerlink" title="意图"></a>意图</h2><blockquote><p>为其他对象提供一种代理以控制对这个对象的访问。</p></blockquote><h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><blockquote><p>对一个对象进行访问控制的一个原因是为了只有在我们确实需要这个对象时才对它进行创建和初始化。</p></blockquote><h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><blockquote><p>代理模式主要用于当我们需要一个简单对象来表示一个复杂对象的情形。如果创建对象的开销很大，那么可以==推迟其创建==，并使用一个简单对象来代理其功能直到必须立即创建的时候。这个简单对象就可以称为复杂对象的代理。</p></blockquote><a id="more"></a><hr><p>UML类图如下：<br><img src="http://on-img.com/chart_image/5b72ec3ee4b08d3622adcc83.png" alt="proxy"></p><h2 id="参与者与协作者："><a href="#参与者与协作者：" class="headerlink" title="参与者与协作者："></a>参与者与协作者：</h2><ul><li style="list-style: none"><input type="checkbox"> <code>抽象角色</code>（<code>Subject</code>）：它是一个由真实角色实现的接口，并能够表征真实角色的功能。该接口同时也必须由代理角色实现，这样代理角色能够用于所有真实角色所能使用的地方。</li><li style="list-style: none"><input type="checkbox"> <code>代理角色</code>（<code>Proxy</code>）：它维护了能够允许代理角色访问真实角色的引用。代理角色与真实角色都实现了同一个接口，这样代理角色就能代替真实角色，实现对真实角色的访问控制并负责数据的创建和删除。根据代理的类型，其还能负责其他的职责。</li><li style="list-style: none"><input type="checkbox"> <code>真实角色</code>（<code>RealSubject</code>）：这是代理角色所代表的真实对象。</li></ul><h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例:"></a>代码示例:</h2><p>假如我们想要在电子邮件中附加一张图片。而添加一张照片并发送是一件耗费大量资源的操作。</p><p>这时我们使用代理模式，让我们能够在确实需要加载图片时才对它进行创建和初始化。</p><ol><li><p><em>首先，我们创建一个能够被真实对象和代理对象实现的通用接口</em></p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>Image &#123;</span><br><span class="line">   void showImage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p><em>建立一个真实图片类实现上述接口</em></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealImage</span> <span class="keyword">implements</span> <span class="title">Image</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> URL url;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">RealImage</span><span class="params">(URL url)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.url = url;</span><br><span class="line">      loadImage(url);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showImage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Displaying "</span> + url.getFile());</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">loadImage</span><span class="params">(URL url)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Loading "</span> + url.getFile());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p><em>编写代理类，提供对真实图片类的访问。</em></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyImage</span> <span class="keyword">implements</span> <span class="title">Image</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> RealImage realImage;</span><br><span class="line">   <span class="keyword">private</span> URL url;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">ProxyImage</span><span class="params">(URL url)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.url = url;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showImage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(realImage == <span class="keyword">null</span>)&#123;</span><br><span class="line">         realImage = <span class="keyword">new</span> RealImage(url);</span><br><span class="line">      &#125;</span><br><span class="line">      realImage.showImage();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p><em>测试</em></p><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class ProxyTest &#123;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">      Image <span class="built_in">image</span> = <span class="keyword">new</span> ProxyImage(<span class="keyword">new</span> URL(<span class="string">"test.jpeg"</span>));</span><br><span class="line"> </span><br><span class="line">      <span class="comment">// 加载图片</span></span><br><span class="line">      <span class="built_in">image</span>.showImage(); </span><br><span class="line">      System.out.<span class="built_in">println</span>(<span class="string">""</span>);</span><br><span class="line">      <span class="comment">// 图像加载过，则不需再次加载</span></span><br><span class="line">      <span class="built_in">image</span>.showImage();  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Proxy-模式&quot;&gt;&lt;a href=&quot;#Proxy-模式&quot; class=&quot;headerlink&quot; title=&quot;Proxy 模式&quot;&gt;&lt;/a&gt;Proxy 模式&lt;/h1&gt;&lt;h2 id=&quot;意图&quot;&gt;&lt;a href=&quot;#意图&quot; class=&quot;headerlink&quot; title=&quot;意图&quot;&gt;&lt;/a&gt;意图&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;为其他对象提供一种代理以控制对这个对象的访问。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;动机&quot;&gt;&lt;a href=&quot;#动机&quot; class=&quot;headerlink&quot; title=&quot;动机&quot;&gt;&lt;/a&gt;动机&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;对一个对象进行访问控制的一个原因是为了只有在我们确实需要这个对象时才对它进行创建和初始化。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;应用场景&quot;&gt;&lt;a href=&quot;#应用场景&quot; class=&quot;headerlink&quot; title=&quot;应用场景&quot;&gt;&lt;/a&gt;应用场景&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;代理模式主要用于当我们需要一个简单对象来表示一个复杂对象的情形。如果创建对象的开销很大，那么可以==推迟其创建==，并使用一个简单对象来代理其功能直到必须立即创建的时候。这个简单对象就可以称为复杂对象的代理。&lt;/p&gt;
-&lt;/blockquote&gt;
     
     </summary>
     
