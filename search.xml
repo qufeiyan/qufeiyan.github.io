@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode之删除链表中的节点（237）]]></title>
+    <url>%2Fpost%2Fa08eaa2d.html</url>
+    <content type="text"><![CDATA[题目 请编写一个函数，使其可以删除某个链表中给定的（非末尾）节点，你将只被给定要求被删除的节点。 现有一个链表 – head = [4,5,1,9]，它可以表示为: 4 -&gt; 5 -&gt; 1 -&gt; 9 示例 1:123输入: head = [4,5,1,9], node = 5输出: [4,1,9]解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 1 -&gt; 9. 示例 2:123输入: head = [4,5,1,9], node = 1输出: [4,5,9]解释: 给定你链表中值为 1 的第三个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 5 -&gt; 9. 说明: 链表至少包含两个节点。 链表中所有节点的值都是唯一的。 给定的节点为非末尾节点并且一定是链表中的一个有效节点。 不要从你的函数中返回任何结果。 分析 题目中要求，函数只给了要求被删除的节点。问题其实已经简化，只需要将当前需要删除的节点的值换为下一个节点的值，当前需要删除的节点的下一个节点换为下下个节点即可。 实现代码：C++1234567891011121314151617/** * Definition for singly-linked list. * struct ListNode &#123; * int val; * ListNode *next; * ListNode(int x) : val(x), next(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: void deleteNode(ListNode* node) &#123; if(node != NULL &amp;&amp; node-&gt;next != NULL)&#123; node-&gt;val = node-&gt;next-&gt;val; node-&gt;next = node-&gt;next-&gt;next; &#125; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>链表</tag>
+        <tag>删除节点</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode之相交链表（160）]]></title>
     <url>%2Fpost%2Ff2dd8ca4.html</url>
     <content type="text"><![CDATA[题目 编写一个程序，找到两个单链表相交的起始节点。 例如，下面的两个链表：12345A: a1 → a2 ↘ c1 → c2 → c3 ↗ B: b1 → b2 → b3 在节点 c1 开始相交。 注意： 如果两个链表没有交点，返回 null. 在返回结果后，两个链表仍须保持原有的结构。 可假定整个链表结构中没有循环。 程序尽量满足 O(n) 时间复杂度，且仅用 O(1) 内存。 分析 按照以上所示链表，问题其实很简单，链表相交即两个链表交于一点，其后完全一样。即 尾部对齐 并 相等 。首先想到的是暴力两次遍历，复杂度为 O(n^2) ,不满足要求。其实，若是两个链表长度一致，可以直接一次遍历两个链表得出结果。若是长度不一致，可以在短链表到结尾之后，跳到另一个链表的头继续遍历,这样当长链表到达结尾后，跳到短链表的头时，此时两个链表已经尾部对齐了。再判断是否相等。 实现代码：C++123456789101112131415161718192021222324/** * Definition for singly-linked list. * struct ListNode &#123; * int val; * ListNode *next; * ListNode(int x) : val(x), next(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) &#123; if (headA == NULL || headB == NULL) return NULL; ListNode* node1 = headA; ListNode* node2 = headB; while (node1 != node2) &#123; node1 = node1-&gt;next; node2 = node2-&gt;next; if (node1 == node2) return node1; // in case node1 == node2 == null if (node1 == NULL) node1 = headB;//这里可能会错，不要写成node1=node2 if (node2 == NULL) node2 = headA; &#125; return node1; &#125;&#125;;]]></content>
@@ -150,8 +163,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>双指针法</tag>
         <tag>算法</tag>
+        <tag>双指针法</tag>
       </tags>
   </entry>
   <entry>
@@ -176,8 +189,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>双指针法</tag>
         <tag>算法</tag>
+        <tag>双指针法</tag>
       </tags>
   </entry>
   <entry>
@@ -189,8 +202,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>双指针法</tag>
         <tag>算法</tag>
+        <tag>双指针法</tag>
       </tags>
   </entry>
   <entry>

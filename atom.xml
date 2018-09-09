@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qufeiyan.top/"/>
-  <updated>2018-09-09T07:17:27.596Z</updated>
+  <updated>2018-09-09T10:07:46.937Z</updated>
   <id>http://qufeiyan.top/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LeetCode之删除链表中的节点（237）</title>
+    <link href="http://qufeiyan.top/post/a08eaa2d.html"/>
+    <id>http://qufeiyan.top/post/a08eaa2d.html</id>
+    <published>2018-09-09T09:54:28.000Z</published>
+    <updated>2018-09-09T10:07:46.937Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>请编写一个函数，使其可以删除某个链表中给定的（非末尾）节点，你将只被给定要求被删除的节点。</p></blockquote><blockquote><p>现有一个链表 – head = [4,5,1,9]，它可以表示为:</p></blockquote><pre><code>4 -&gt; 5 -&gt; 1 -&gt; 9</code></pre><h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: head = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">9</span>], <span class="keyword">node</span> <span class="title">= 5</span></span><br><span class="line">输出: [<span class="number">4</span>,<span class="number">1</span>,<span class="number">9</span>]</span><br><span class="line">解释: 给定你链表中值为 <span class="number">5</span> 的第二个节点，那么在调用了你的函数之后，该链表应变为 <span class="number">4</span> -&gt; <span class="number">1</span> -&gt; <span class="number">9</span>.</span><br></pre></td></tr></table></figure><h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: head = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">9</span>], <span class="keyword">node</span> <span class="title">= 1</span></span><br><span class="line">输出: [<span class="number">4</span>,<span class="number">5</span>,<span class="number">9</span>]</span><br><span class="line">解释: 给定你链表中值为 <span class="number">1</span> 的第三个节点，那么在调用了你的函数之后，该链表应变为 <span class="number">4</span> -&gt; <span class="number">5</span> -&gt; <span class="number">9</span>.</span><br></pre></td></tr></table></figure><h2 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h2><ul><li>链表至少包含两个节点。</li><li>链表中所有节点的值都是唯一的。</li><li>给定的节点为非末尾节点并且一定是链表中的一个有效节点。</li><li>不要从你的函数中返回任何结果。</li></ul><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><blockquote><p>题目中要求，函数只给了要求被删除的节点。问题其实已经简化，只需要将当前需要删除的节点的值换为下一个节点的值，当前需要删除的节点的下一个节点换为下下个节点即可。</p></blockquote><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">deleteNode</span><span class="params">(ListNode* node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(node != <span class="literal">NULL</span> &amp;&amp; node-&gt;next != <span class="literal">NULL</span>)&#123;</span><br><span class="line">            node-&gt;val = node-&gt;next-&gt;val;</span><br><span class="line">            node-&gt;next = node-&gt;next-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;请编写一个函数，使其可以删除某个链表中给定的（非末尾）节点，你将只被给定要求被删除的节点。&lt;/p&gt;
+&lt;/block
+      
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
+    
+    
+      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="链表" scheme="http://qufeiyan.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+      <category term="删除节点" scheme="http://qufeiyan.top/tags/%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode之相交链表（160）</title>
@@ -395,9 +426,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
-    
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
     
   </entry>
   
@@ -461,9 +492,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
-    
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
     
   </entry>
   
@@ -504,9 +535,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
-    
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
     
   </entry>
   
