@@ -138,7 +138,7 @@
 
 
 
-  <meta name="keywords" content="字符串,去字符串空格,数字字符转数字," />
+  <meta name="keywords" content="Tencent,字符串,去字符串空格,数字字符转数字," />
 
 
 
@@ -152,14 +152,14 @@
 
 
 <meta name="description" content="题目 实现 atoi，将字符串转为整数。   在找到第一个非空字符之前，需要移除掉字符串中的空格字符。如果第一个非空字符是正号或负号，选取该符号，并将其与后面尽可能多的连续的数字组合起来，这部分字符即为整数的值。如果第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。   字符串可以在形成整数的字符后面包括多余的字符，这些字符可以被忽略，它们对于函数没有影响。   当字符串中的">
-<meta name="keywords" content="字符串,去字符串空格,数字字符转数字">
+<meta name="keywords" content="Tencent,字符串,去字符串空格,数字字符转数字">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode之字符串转整数(atoi)（8）">
 <meta property="og:url" content="http://qufeiyan.top/post/8d9f4efd.html">
 <meta property="og:site_name" content="QuFeiyan&#39;s Hut">
 <meta property="og:description" content="题目 实现 atoi，将字符串转为整数。   在找到第一个非空字符之前，需要移除掉字符串中的空格字符。如果第一个非空字符是正号或负号，选取该符号，并将其与后面尽可能多的连续的数字组合起来，这部分字符即为整数的值。如果第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。   字符串可以在形成整数的字符后面包括多余的字符，这些字符可以被忽略，它们对于函数没有影响。   当字符串中的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-06T09:56:57.381Z">
+<meta property="og:updated_time" content="2018-09-09T12:06:03.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode之字符串转整数(atoi)（8）">
 <meta name="twitter:description" content="题目 实现 atoi，将字符串转为整数。   在找到第一个非空字符之前，需要移除掉字符串中的空格字符。如果第一个非空字符是正号或负号，选取该符号，并将其与后面尽可能多的连续的数字组合起来，这部分字符即为整数的值。如果第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。   字符串可以在形成整数的字符后面包括多余的字符，这些字符可以被忽略，它们对于函数没有影响。   当字符串中的">
@@ -440,8 +440,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-06T17:56:57+08:00">
-                2018-09-06
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-09T20:06:03+08:00">
+                2018-09-09
               </time>
             
           </span>
@@ -561,7 +561,7 @@
 <p>若函数不能执行有效的转换，返回 0。</p>
 </blockquote>
 <h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><blockquote>
-<p>假设我们的环境只能存储 <code>32位</code> 有符号整数，其数值范围是 $[−2^{31}$,  $2^{31} − 1]$。如果数值超过可表示的范围，则返回 <code>INT_MAX</code> ($2^{31} − 1$) 或 <code>INT_MIN</code> ($−2^{31}$) 。<br><a id="more"></a></p>
+<p>假设我们的环境只能存储 <code>32位</code> 有符号整数，其数值范围是 [$−2^{31}$,  $2^{31}$ − 1]。如果数值超过可表示的范围，则返回 <code>INT_MAX</code> ($2^{31}$ − 1) 或 <code>INT_MIN</code> ($−2^{31}$) 。<br><a id="more"></a></p>
 </blockquote>
 <h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: "42"</span></span><br><span class="line"><span class="section">输出: 42</span></span><br><span class="line">示例 2:</span><br></pre></td></tr></table></figure>
 <h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: "   -42"</span></span><br><span class="line"><span class="section">输出: -42</span></span><br><span class="line"><span class="section">解释: 第一个非空白字符为 '-', 它是一个负号。</span></span><br><span class="line">     我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。</span><br></pre></td></tr></table></figure>
@@ -647,6 +647,8 @@
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/Tencent/" rel="tag"><i class="fa fa-tag"></i> Tencent</a>
           
             <a href="/tags/字符串/" rel="tag"><i class="fa fa-tag"></i> 字符串</a>
           
@@ -782,7 +784,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -804,7 +806,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -932,7 +934,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">7.3k</span>
+    <span title="Site words total count">7.5k</span>
   
 </div>
 
@@ -1611,6 +1613,26 @@
 
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

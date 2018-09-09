@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode之反转整数（7）]]></title>
+    <url>%2Fpost%2Fd68d470b.html</url>
+    <content type="text"><![CDATA[题目 给定一个 32 位有符号整数，将整数中的数字进行反转。 示例 1:12输入: 123输出: 321 示例 2:12输入: -123输出: -321 示例 3:12输入: 120输出: 21 注意:1假设我们的环境只能存储 32 位有符号整数，其数值范围是 [$−2^&#123;31&#125;$, $2^&#123;31&#125;−1$]。根据这个假设，如果反转后的整数溢出，则返回 0。 分析 可用循环迭代每一位，上次的结果*10+加上当前位（x%10）即为新的结果。注意正负号。 实现代码：C++1234567891011121314151617class Solution &#123;public: int reverse(int x) &#123; bool isPositive = x &gt; 0; if(isPositive == false)&#123; x = -x; &#125; long res = 0; while(x &gt; 0)&#123; res = res*10 + x%10; x = x/10; &#125; if(res &gt; INT_MAX) return 0; return res = isPositive ? res : -res; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>数字</tag>
+        <tag>Tencent</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode之删除链表中的节点（237）]]></title>
     <url>%2Fpost%2Fa08eaa2d.html</url>
     <content type="text"><![CDATA[题目 请编写一个函数，使其可以删除某个链表中给定的（非末尾）节点，你将只被给定要求被删除的节点。 现有一个链表 – head = [4,5,1,9]，它可以表示为: 4 -&gt; 5 -&gt; 1 -&gt; 9 示例 1:123输入: head = [4,5,1,9], node = 5输出: [4,1,9]解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 1 -&gt; 9. 示例 2:123输入: head = [4,5,1,9], node = 1输出: [4,5,9]解释: 给定你链表中值为 1 的第三个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 5 -&gt; 9. 说明: 链表至少包含两个节点。 链表中所有节点的值都是唯一的。 给定的节点为非末尾节点并且一定是链表中的一个有效节点。 不要从你的函数中返回任何结果。 分析 题目中要求，函数只给了要求被删除的节点。问题其实已经简化，只需要将当前需要删除的节点的值换为下一个节点的值，当前需要删除的节点的下一个节点换为下下个节点即可。 实现代码：C++1234567891011121314151617/** * Definition for singly-linked list. * struct ListNode &#123; * int val; * ListNode *next; * ListNode(int x) : val(x), next(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: void deleteNode(ListNode* node) &#123; if(node != NULL &amp;&amp; node-&gt;next != NULL)&#123; node-&gt;val = node-&gt;next-&gt;val; node-&gt;next = node-&gt;next-&gt;next; &#125; &#125;&#125;;]]></content>
@@ -118,11 +131,12 @@
   <entry>
     <title><![CDATA[LeetCode之字符串转整数(atoi)（8）]]></title>
     <url>%2Fpost%2F8d9f4efd.html</url>
-    <content type="text"><![CDATA[题目 实现 atoi，将字符串转为整数。 在找到第一个非空字符之前，需要移除掉字符串中的空格字符。如果第一个非空字符是正号或负号，选取该符号，并将其与后面尽可能多的连续的数字组合起来，这部分字符即为整数的值。如果第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。 字符串可以在形成整数的字符后面包括多余的字符，这些字符可以被忽略，它们对于函数没有影响。 当字符串中的第一个非空字符序列不是个有效的整数；或字符串为空；或字符串仅包含空白字符时，则不进行转换。 若函数不能执行有效的转换，返回 0。 说明： 假设我们的环境只能存储 32位 有符号整数，其数值范围是 $[−2^{31}$, $2^{31} − 1]$。如果数值超过可表示的范围，则返回 INT_MAX ($2^{31} − 1$) 或 INT_MIN ($−2^{31}$) 。 示例 1:123输入: "42"输出: 42示例 2: 示例 2:1234输入: " -42"输出: -42解释: 第一个非空白字符为 '-', 它是一个负号。 我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。 示例 3:123输入: "4193 with words"输出: 4193解释: 转换截止于数字 '3' ，因为它的下一个字符不为数字。 示例 4:1234输入: "words and 987"输出: 0解释: 第一个非空字符是 'w', 但它不是数字或正、负号。 因此此无法执行有效的转换。 示例 5:1234输入: "-91283472332"输出: -2147483648解释: 数字 "-91283472332" 超过 32 位有符号整数范围。 因此返回 INT_MIN。 分析 先去除字符串开头空格。 用第一个字符，判断正负。 数字字符换成数字，可以直接用该字符-‘0’。 每一位的获取可以用上一次结果x10+当前转换后的数字。 实现代码：C++1234567891011121314151617181920212223242526272829303132class Solution &#123;public: int myAtoi(string str) &#123; str.erase(0,str.find_first_not_of(" ")); int size = str.size(); if(size &lt; 1)&#123; return 0; &#125; long res = 0; char first; bool isPositive = true; // const int INT_MAX = 2^31; for(int i = 0;i &lt; size;i++)&#123; char c = str[i]; if(i == 0 &amp;&amp; (c == '+' || c == '-'))&#123; isPositive = (c == '+'); &#125;else if(c &gt;= '0' &amp;&amp; c &lt;= '9')&#123; res *= 10; res += c - '0'; long actual = isPositive ? res : -res; if(actual &gt; INT_MAX)&#123; return INT_MAX; &#125;else if(actual &lt; INT_MIN)&#123; return INT_MIN; &#125; &#125;else&#123; return isPositive ? (int)res : (int)-res; &#125; &#125; return isPositive ? (int)res : (int)-res; &#125;&#125;;]]></content>
+    <content type="text"><![CDATA[题目 实现 atoi，将字符串转为整数。 在找到第一个非空字符之前，需要移除掉字符串中的空格字符。如果第一个非空字符是正号或负号，选取该符号，并将其与后面尽可能多的连续的数字组合起来，这部分字符即为整数的值。如果第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。 字符串可以在形成整数的字符后面包括多余的字符，这些字符可以被忽略，它们对于函数没有影响。 当字符串中的第一个非空字符序列不是个有效的整数；或字符串为空；或字符串仅包含空白字符时，则不进行转换。 若函数不能执行有效的转换，返回 0。 说明： 假设我们的环境只能存储 32位 有符号整数，其数值范围是 [$−2^{31}$, $2^{31}$ − 1]。如果数值超过可表示的范围，则返回 INT_MAX ($2^{31}$ − 1) 或 INT_MIN ($−2^{31}$) 。 示例 1:123输入: "42"输出: 42示例 2: 示例 2:1234输入: " -42"输出: -42解释: 第一个非空白字符为 '-', 它是一个负号。 我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。 示例 3:123输入: "4193 with words"输出: 4193解释: 转换截止于数字 '3' ，因为它的下一个字符不为数字。 示例 4:1234输入: "words and 987"输出: 0解释: 第一个非空字符是 'w', 但它不是数字或正、负号。 因此此无法执行有效的转换。 示例 5:1234输入: "-91283472332"输出: -2147483648解释: 数字 "-91283472332" 超过 32 位有符号整数范围。 因此返回 INT_MIN。 分析 先去除字符串开头空格。 用第一个字符，判断正负。 数字字符换成数字，可以直接用该字符-‘0’。 每一位的获取可以用上一次结果x10+当前转换后的数字。 实现代码：C++1234567891011121314151617181920212223242526272829303132class Solution &#123;public: int myAtoi(string str) &#123; str.erase(0,str.find_first_not_of(" ")); int size = str.size(); if(size &lt; 1)&#123; return 0; &#125; long res = 0; char first; bool isPositive = true; // const int INT_MAX = 2^31; for(int i = 0;i &lt; size;i++)&#123; char c = str[i]; if(i == 0 &amp;&amp; (c == '+' || c == '-'))&#123; isPositive = (c == '+'); &#125;else if(c &gt;= '0' &amp;&amp; c &lt;= '9')&#123; res *= 10; res += c - '0'; long actual = isPositive ? res : -res; if(actual &gt; INT_MAX)&#123; return INT_MAX; &#125;else if(actual &lt; INT_MIN)&#123; return INT_MIN; &#125; &#125;else&#123; return isPositive ? (int)res : (int)-res; &#125; &#125; return isPositive ? (int)res : (int)-res; &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>Tencent</tag>
         <tag>字符串</tag>
         <tag>去字符串空格</tag>
         <tag>数字字符转数字</tag>
@@ -163,8 +177,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>算法</tag>
         <tag>双指针法</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -189,8 +203,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>算法</tag>
         <tag>双指针法</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -202,8 +216,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>算法</tag>
         <tag>双指针法</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
