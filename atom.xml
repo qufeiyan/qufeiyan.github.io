@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qufeiyan.top/"/>
-  <updated>2018-09-10T07:51:58.657Z</updated>
+  <updated>2018-09-10T12:21:50.712Z</updated>
   <id>http://qufeiyan.top/</id>
   
   <author>
@@ -17,11 +17,45 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>搜索旋转排序数组（33）</title>
+    <link href="http://qufeiyan.top/post/2d12b800.html"/>
+    <id>http://qufeiyan.top/post/2d12b800.html</id>
+    <published>2018-09-10T12:05:40.000Z</published>
+    <updated>2018-09-10T12:21:50.712Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p></blockquote><p>( 例如，数组 <code>[0,1,2,4,5,6,7]</code> 可能变为 <code>[4,5,6,7,0,1,2]</code> )。</p><p>搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回 <code>-1</code> 。</p><p>你可以假设数组中不存在重复的元素。</p><p>你的算法时间复杂度必须是 <code>O(log n)</code> 级别。</p><h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: nums = [4,5,6,7,0,1,2], target = 0</span></span><br><span class="line"><span class="section">输出: 4</span></span><br></pre></td></tr></table></figure><h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: nums = [4,5,6,7,0,1,2], target = 3</span></span><br><span class="line"><span class="section">输出: -1</span></span><br></pre></td></tr></table></figure><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><blockquote><p>二分法求解。</p><ol><li>首先判断之后要搜索左半段还是右半段。显然，每次二分数组都会分为一半完全有序，一般部分有序。</li><li>若中间的数小于最右边的数，则右半段是有序的，若中间数大于最右边数，则左半段是有序的。然后判断目标值是否在有序的区域，保留包含 <code>target</code>的区域，进行下一次二分。</li></ol></blockquote><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><pre><code class="C++"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span><span class="keyword">public</span>:    <span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>{        <span class="keyword">int</span> size = nums.size();        <span class="keyword">int</span> l = <span class="number">0</span>, r = size<span class="number">-1</span>;          <span class="keyword">while</span>(l &lt;= r){            <span class="keyword">int</span> mid = (l+r)/<span class="number">2</span>;            <span class="keyword">if</span>(nums[mid] == target){                <span class="keyword">return</span> mid;            }            <span class="keyword">if</span>(nums[mid] &lt; nums[r]){ <span class="comment">//后半段有序</span>                <span class="keyword">if</span>(nums[mid] &lt; target &amp;&amp; nums[r] &gt;= target){ <span class="comment">//target 在后半段</span>                    l = mid + <span class="number">1</span>;                 }<span class="keyword">else</span>{                    r = mid - <span class="number">1</span>;                }            }<span class="keyword">else</span> { <span class="comment">//前半段有序</span>                <span class="keyword">if</span>(nums[l] &lt;= target &amp;&amp; nums[mid] &gt; target){ <span class="comment">//target 在前半段</span>                    r = mid - <span class="number">1</span>;                }<span class="keyword">else</span>{                    l = mid + <span class="number">1</span>;                }               }        }        <span class="keyword">return</span> <span class="number">-1</span>;    }};</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;假设按照升序排序的数组在预先未知的某个点上进行了旋转。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;( 例如，数组 
+      
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
+    
+      <category term="Tencent" scheme="http://qufeiyan.top/categories/LeetCode/Tencent/"/>
+    
+    
+      <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="查找" scheme="http://qufeiyan.top/tags/%E6%9F%A5%E6%89%BE/"/>
+    
+      <category term="二分法" scheme="http://qufeiyan.top/tags/%E4%BA%8C%E5%88%86%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>排序链表（148）</title>
     <link href="http://qufeiyan.top/post/d2b41552.html"/>
     <id>http://qufeiyan.top/post/d2b41552.html</id>
     <published>2018-09-10T07:43:19.000Z</published>
-    <updated>2018-09-10T07:51:58.657Z</updated>
+    <updated>2018-09-10T07:55:09.350Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>在 <code>O(nlogn)</code> 时间复杂度和常数级空间复杂度下，对链表进行排序。</p></blockquote><h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h2><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">4</span>-&gt;<span class="number">2</span>-&gt;<span class="number">1</span>-&gt;<span class="number">3</span></span><br><span class="line">输出: <span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span></span><br></pre></td></tr></table></figure><h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h2><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">-1</span>-&gt;<span class="number">5</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>-&gt;<span class="number">0</span></span><br><span class="line">输出: <span class="number">-1</span>-&gt;<span class="number">0</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>-&gt;<span class="number">5</span></span><br></pre></td></tr></table></figure><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><blockquote><p>归并排序法。</p><ul><li>把链表从中间断开，分成前后两个子链，然后递归这一过程。</li><li>最后利用<a href="http://qufeiyan.top/post/5fd4a75a.html">合并两个有序链表</a>的方法进行融合。</li></ul></blockquote><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">sortList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">NULL</span> || head-&gt;next == <span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* fast = head, *slow = head;</span><br><span class="line">        ListNode* preTail = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="literal">NULL</span> &amp;&amp; fast-&gt;next != <span class="literal">NULL</span>)&#123;</span><br><span class="line">            preTail = slow;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(preTail != <span class="literal">NULL</span>) preTail-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="comment">// ListNode* l1 = sortList(head);</span></span><br><span class="line">        <span class="comment">// ListNode* l2 = sortList(slow);</span></span><br><span class="line">        <span class="keyword">return</span> mergeTwoLists(sortList(head),sortList(slow));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* l1,ListNode* l2)</span></span>&#123;</span><br><span class="line">        ListNode* dummyHead = <span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">        ListNode* temp = dummyHead;</span><br><span class="line">        <span class="keyword">while</span>(l1 &amp;&amp; l2)&#123;</span><br><span class="line">            <span class="keyword">if</span>(l1-&gt;val &lt; l2-&gt;val)&#123;</span><br><span class="line">                temp-&gt;next = l1;</span><br><span class="line">                l1 = l1-&gt;next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                temp-&gt;next = l2;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        temp-&gt;next = l1 ? l1 : l2;</span><br><span class="line">        <span class="keyword">return</span> dummyHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -102,11 +136,11 @@
       <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
     
     
-      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
-    
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
     
   </entry>
   
@@ -135,9 +169,9 @@
     
       <category term="Tencent" scheme="http://qufeiyan.top/tags/Tencent/"/>
     
-      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
-    
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
     
   </entry>
   
@@ -584,11 +618,11 @@
       <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
     
     
-      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
-    
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
     
   </entry>
   
@@ -620,44 +654,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
     
-  </entry>
-  
-  <entry>
-    <title>LeetCode之电话号码的字母组合（17）</title>
-    <link href="http://qufeiyan.top/post/d972dfa3.html"/>
-    <id>http://qufeiyan.top/post/d972dfa3.html</id>
-    <published>2018-09-04T07:44:09.000Z</published>
-    <updated>2018-09-06T07:50:31.345Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。<br>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p></blockquote><p><img src="http://jijian-image.oss-cn-beijing.aliyuncs.com/18-9-4/87924053.jpg" alt=""></p><h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="string">"23"</span></span><br><span class="line">输出：[<span class="string">"ad"</span>, <span class="string">"ae"</span>, <span class="string">"af"</span>, <span class="string">"bd"</span>, <span class="string">"be"</span>, <span class="string">"bf"</span>,<span class="string">"cd"</span>, <span class="string">"ce"</span>, <span class="string">"cf"</span>].</span><br></pre></td></tr></table></figure><h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><blockquote><p>尽管上面的答案是按字典序排列的，但是你可以<span id="inline-red">任意选择答案输出</span>的顺序。</p></blockquote><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><blockquote><p>因为不知道输入数字字符串的长度，考虑用<code>递归</code>实现。<br>注意递归的<code>终止条件</code>。<br><a id="more"></a></p></blockquote><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>：</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; letterCombinations(<span class="built_in">string</span> digits)&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; numStrVector = <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt;(&#123;</span><br><span class="line">            &#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"d"</span>,<span class="string">"e"</span>,<span class="string">"f"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"g"</span>,<span class="string">"h"</span>,<span class="string">"i"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"j"</span>,<span class="string">"k"</span>,<span class="string">"l"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"m"</span>,<span class="string">"n"</span>,<span class="string">"o"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"p"</span>,<span class="string">"q"</span>,<span class="string">"r"</span>,<span class="string">"s"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"t"</span>,<span class="string">"u"</span>,<span class="string">"v"</span>&#125;,</span><br><span class="line">            &#123;<span class="string">"w"</span>,<span class="string">"x"</span>,<span class="string">"y"</span>,<span class="string">"z"</span>&#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</span><br><span class="line">        <span class="keyword">if</span>(digits.size() == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; firstStrVector = numStrVector[digits[<span class="number">0</span>] - <span class="number">48</span> - <span class="number">2</span>];</span><br><span class="line">        <span class="keyword">if</span>(digits.size() == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> firstStrVector;</span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; leftStrVector = letterCombinations(digits.substr(<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> s : firstStrVector)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> left : leftStrVector)&#123;</span><br><span class="line">                res.push_back(s + left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。&lt;br&gt;给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;http://jijian-image.oss-cn-beijing.aliyuncs.com/18-9-4/87924053.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;示例：&quot;&gt;&lt;a href=&quot;#示例：&quot; class=&quot;headerlink&quot; title=&quot;示例：&quot;&gt;&lt;/a&gt;示例：&lt;/h2&gt;&lt;figure class=&quot;highlight prolog&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入：&lt;span class=&quot;string&quot;&gt;&quot;23&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出：[&lt;span class=&quot;string&quot;&gt;&quot;ad&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;ae&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;af&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;bd&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;be&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;bf&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;cd&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;ce&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;cf&quot;&lt;/span&gt;].&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;说明：&quot;&gt;&lt;a href=&quot;#说明：&quot; class=&quot;headerlink&quot; title=&quot;说明：&quot;&gt;&lt;/a&gt;说明：&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;尽管上面的答案是按字典序排列的，但是你可以&lt;span id=&quot;inline-red&quot;&gt;任意选择答案输出&lt;/span&gt;的顺序。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;因为不知道输入数字字符串的长度，考虑用&lt;code&gt;递归&lt;/code&gt;实现。&lt;br&gt;注意递归的&lt;code&gt;终止条件&lt;/code&gt;。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
-    
-    
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="字符串" scheme="http://qufeiyan.top/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-      <category term="递归" scheme="http://qufeiyan.top/tags/%E9%80%92%E5%BD%92/"/>
     
   </entry>
   
