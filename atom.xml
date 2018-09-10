@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qufeiyan.top/"/>
-  <updated>2018-09-10T03:00:59.354Z</updated>
+  <updated>2018-09-10T07:51:58.657Z</updated>
   <id>http://qufeiyan.top/</id>
   
   <author>
@@ -17,11 +17,42 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>排序链表（148）</title>
+    <link href="http://qufeiyan.top/post/d2b41552.html"/>
+    <id>http://qufeiyan.top/post/d2b41552.html</id>
+    <published>2018-09-10T07:43:19.000Z</published>
+    <updated>2018-09-10T07:51:58.657Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>在 <code>O(nlogn)</code> 时间复杂度和常数级空间复杂度下，对链表进行排序。</p></blockquote><h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h2><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">4</span>-&gt;<span class="number">2</span>-&gt;<span class="number">1</span>-&gt;<span class="number">3</span></span><br><span class="line">输出: <span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span></span><br></pre></td></tr></table></figure><h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h2><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="number">-1</span>-&gt;<span class="number">5</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>-&gt;<span class="number">0</span></span><br><span class="line">输出: <span class="number">-1</span>-&gt;<span class="number">0</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>-&gt;<span class="number">5</span></span><br></pre></td></tr></table></figure><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><blockquote><p>归并排序法。</p><ul><li>把链表从中间断开，分成前后两个子链，然后递归这一过程。</li><li>最后利用<a href="http://qufeiyan.top/post/5fd4a75a.html">合并两个有序链表</a>的方法进行融合。</li></ul></blockquote><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">sortList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">NULL</span> || head-&gt;next == <span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* fast = head, *slow = head;</span><br><span class="line">        ListNode* preTail = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="literal">NULL</span> &amp;&amp; fast-&gt;next != <span class="literal">NULL</span>)&#123;</span><br><span class="line">            preTail = slow;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(preTail != <span class="literal">NULL</span>) preTail-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="comment">// ListNode* l1 = sortList(head);</span></span><br><span class="line">        <span class="comment">// ListNode* l2 = sortList(slow);</span></span><br><span class="line">        <span class="keyword">return</span> mergeTwoLists(sortList(head),sortList(slow));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* l1,ListNode* l2)</span></span>&#123;</span><br><span class="line">        ListNode* dummyHead = <span class="keyword">new</span> ListNode(<span class="number">-1</span>);</span><br><span class="line">        ListNode* temp = dummyHead;</span><br><span class="line">        <span class="keyword">while</span>(l1 &amp;&amp; l2)&#123;</span><br><span class="line">            <span class="keyword">if</span>(l1-&gt;val &lt; l2-&gt;val)&#123;</span><br><span class="line">                temp-&gt;next = l1;</span><br><span class="line">                l1 = l1-&gt;next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                temp-&gt;next = l2;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        temp-&gt;next = l1 ? l1 : l2;</span><br><span class="line">        <span class="keyword">return</span> dummyHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;在 &lt;code&gt;O(nlogn)&lt;/code&gt; 时间复杂度和常数级空间复杂度下，对链表进行排序。&lt;/p&gt;
+&lt;/bl
+      
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
+    
+    
+      <category term="Tencent" scheme="http://qufeiyan.top/tags/Tencent/"/>
+    
+      <category term="链表" scheme="http://qufeiyan.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+      <category term="归并排序" scheme="http://qufeiyan.top/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>2的幂（231）</title>
     <link href="http://qufeiyan.top/post/abfa51f.html"/>
     <id>http://qufeiyan.top/post/abfa51f.html</id>
     <published>2018-09-10T02:51:25.000Z</published>
-    <updated>2018-09-10T03:00:59.354Z</updated>
+    <updated>2018-09-10T03:01:41.707Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>给定一个整数，编写一个函数来判断它是否是 2 的幂次方。</p></blockquote><h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: 1</span></span><br><span class="line"><span class="section">输出: true</span></span><br><span class="line"><span class="section">解释: 20 = 1</span></span><br></pre></td></tr></table></figure><h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: 16</span></span><br><span class="line"><span class="section">输出: true</span></span><br><span class="line"><span class="section">解释: 24 = 16</span></span><br></pre></td></tr></table></figure><h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例 3:"></a>示例 3:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: 218</span></span><br><span class="line"><span class="section">输出: false</span></span><br></pre></td></tr></table></figure><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><blockquote><p>迭代求解<br>当 <code>n&gt;1</code> 时，判断 <code>n%2</code>是否能除尽，如除不尽，返回 <code>false</code>,否则，通过 <code>n /= 2</code>更新 <code>n</code> 值，继续判断。</p></blockquote><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(n == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(n &gt; <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(n % <span class="number">2</span> != <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span></span><br><span class="line">                n /= <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -71,11 +102,11 @@
       <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
     
     
+      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
     
   </entry>
   
@@ -104,9 +135,9 @@
     
       <category term="Tencent" scheme="http://qufeiyan.top/tags/Tencent/"/>
     
-      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    
+      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -292,18 +323,18 @@
     
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="排序链表" scheme="http://qufeiyan.top/tags/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/"/>
-    
       <category term="归并排序" scheme="http://qufeiyan.top/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="排序链表" scheme="http://qufeiyan.top/tags/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/"/>
     
   </entry>
   
   <entry>
-    <title>LeetCode之合并两个有序链表</title>
+    <title>LeetCode之合并两个有序链表（21）</title>
     <link href="http://qufeiyan.top/post/5fd4a75a.html"/>
     <id>http://qufeiyan.top/post/5fd4a75a.html</id>
     <published>2018-09-07T11:43:54.000Z</published>
-    <updated>2018-09-07T12:00:59.625Z</updated>
+    <updated>2018-09-10T07:53:51.425Z</updated>
     
     <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 </p></blockquote><h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">4</span>, <span class="number">1</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span></span><br><span class="line">输出：<span class="number">1</span>-&gt;<span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>-&gt;<span class="number">4</span></span><br></pre></td></tr></table></figure><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><blockquote><p>归并排序，原理与 <a href="http://qufeiyan.top/post/5d771dc9.html">合并两个有序数组</a>相似。</p></blockquote><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode *dummyHead = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        ListNode *temp = dummyHead;</span><br><span class="line">        ListNode *i = l1,*j = l2;</span><br><span class="line">        <span class="keyword">while</span>(i &amp;&amp; j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i-&gt;val &lt; j-&gt;val)&#123;</span><br><span class="line">                temp-&gt;next = i;</span><br><span class="line">                temp = temp-&gt;next;</span><br><span class="line">                i = i-&gt;next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                temp-&gt;next = j;</span><br><span class="line">                temp = temp-&gt;next;</span><br><span class="line">                j = j-&gt;next;</span><br><span class="line">            &#125;                </span><br><span class="line">        &#125;</span><br><span class="line">        temp-&gt;next = i ? i : j;</span><br><span class="line">        <span class="keyword">return</span> dummyHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
     
@@ -319,6 +350,8 @@
     </summary>
     
       <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
+    
+      <category term="Tencent" scheme="http://qufeiyan.top/categories/LeetCode/Tencent/"/>
     
     
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
@@ -551,11 +584,11 @@
       <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
     
     
+      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
     
   </entry>
   
@@ -625,37 +658,6 @@
       <category term="字符串" scheme="http://qufeiyan.top/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
       <category term="递归" scheme="http://qufeiyan.top/tags/%E9%80%92%E5%BD%92/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode之最接近的三数之和（16）</title>
-    <link href="http://qufeiyan.top/post/8a815e5c.html"/>
-    <id>http://qufeiyan.top/post/8a815e5c.html</id>
-    <published>2018-09-03T13:04:16.000Z</published>
-    <updated>2018-09-03T14:17:32.912Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>给定一个包含n个整数的数组<code>nums</code>和一个目标值<code>target</code>。找出<code>nums</code>中的三个整数，<br>使得它们的和与<code>target</code>最接近。返回这三个数的和。假定每组输入只存在唯一答案。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">例如，给定数组nums = [<span class="number">-1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-4</span>],和target = <span class="number">1.</span></span><br><span class="line">与target 最接近的三个数的和为<span class="number">2.</span>(<span class="number">-1</span> + <span class="number">2</span> + <span class="number">1</span> = <span class="number">2</span>).</span><br></pre></td></tr></table></figure></p></blockquote><h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p><span id="inline-red">用双指针法求解</span></p><blockquote><p>首先对数组进行升序排列（C++ sort默认升序)，然后用数组的前三个元素之和作为预设值，当在数组里确定好第一个数字后，就在剩下的数里找两数之和，再加上第一个数，判断<code>nums[i]+nums[l]+nums[r]</code>与<code>target</code>之差的绝对值是否 &lt;= 预设的三数之和与target的差的绝对值。若是，则更新预设值。然后判断<code>nums[i]+nums[l]+nums[r]</code>与<code>target</code>大小来更新指针，若前者大，说明后指针需要前移，反之，则前指针需要后移。<br><a id="more"></a></p></blockquote><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：<code>C++</code></h1><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Solution&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">int</span> threeSumClosest(vector&lt;<span class="built_in">int</span>&gt;&amp; nums,<span class="built_in">int</span> <span class="keyword">target</span>)&#123;</span><br><span class="line">        <span class="built_in">int</span> <span class="built_in">size</span> = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">int</span> res;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">size</span> &lt; <span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(nums.begin(),nums.<span class="keyword">end</span>());</span><br><span class="line">        res = nums[<span class="number">0</span>] + nums[<span class="number">1</span>] + nums[<span class="number">2</span>];</span><br><span class="line">        for(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="built_in">size</span>-<span class="number">2</span>; i++ )&#123;</span><br><span class="line">            <span class="keyword">if</span>(i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i-<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">int</span> l = i+<span class="number">1</span>, r = <span class="built_in">size</span>-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(l&lt;r&gt;)&#123;</span><br><span class="line">                <span class="built_in">int</span> tempSum = nums[i] + nums[l] + nums[r]; </span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">abs</span>(tempSum - <span class="keyword">target</span>) &lt;= <span class="built_in">abs</span>(res - <span class="keyword">target</span>))&#123;</span><br><span class="line">                    res = tempSum;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(tempSum &gt; <span class="keyword">target</span>)&#123;</span><br><span class="line">                    r--;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    l++;</span><br><span class="line">                &#125;   </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;给定一个包含n个整数的数组&lt;code&gt;nums&lt;/code&gt;和一个目标值&lt;code&gt;target&lt;/code&gt;。找出&lt;code&gt;nums&lt;/code&gt;中的三个整数，&lt;br&gt;使得它们的和与&lt;code&gt;target&lt;/code&gt;最接近。返回这三个数的和。假定每组输入只存在唯一答案。&lt;br&gt;&lt;figure class=&quot;highlight lsl&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;例如，给定数组nums = [&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;-4&lt;/span&gt;],和target = &lt;span class=&quot;number&quot;&gt;1.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;与target 最接近的三个数的和为&lt;span class=&quot;number&quot;&gt;2.&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt; + &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; = &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;).&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;思路&quot;&gt;&lt;a href=&quot;#思路&quot; class=&quot;headerlink&quot; title=&quot;思路&quot;&gt;&lt;/a&gt;思路&lt;/h1&gt;&lt;p&gt;&lt;span id=&quot;inline-red&quot;&gt;用双指针法求解&lt;/span&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;首先对数组进行升序排列（C++ sort默认升序)，然后用数组的前三个元素之和作为预设值，当在数组里确定好第一个数字后，就在剩下的数里找两数之和，再加上第一个数，判断&lt;code&gt;nums[i]+nums[l]+nums[r]&lt;/code&gt;与&lt;code&gt;target&lt;/code&gt;之差的绝对值是否 &amp;lt;= 预设的三数之和与target的差的绝对值。若是，则更新预设值。然后判断&lt;code&gt;nums[i]+nums[l]+nums[r]&lt;/code&gt;与&lt;code&gt;target&lt;/code&gt;大小来更新指针，若前者大，说明后指针需要前移，反之，则前指针需要后移。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
-    
-    
-      <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
-    
-      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
     
   </entry>
   

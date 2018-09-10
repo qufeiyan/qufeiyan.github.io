@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[排序链表（148）]]></title>
+    <url>%2Fpost%2Fd2b41552.html</url>
+    <content type="text"><![CDATA[题目 在 O(nlogn) 时间复杂度和常数级空间复杂度下，对链表进行排序。 示例 1:12输入: 4-&gt;2-&gt;1-&gt;3输出: 1-&gt;2-&gt;3-&gt;4 示例 2:12输入: -1-&gt;5-&gt;3-&gt;4-&gt;0输出: -1-&gt;0-&gt;3-&gt;4-&gt;5 分析 归并排序法。 把链表从中间断开，分成前后两个子链，然后递归这一过程。 最后利用合并两个有序链表的方法进行融合。 实现代码：C++12345678910111213141516171819202122232425262728293031323334353637383940414243444546/** * Definition for singly-linked list. * struct ListNode &#123; * int val; * ListNode *next; * ListNode(int x) : val(x), next(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: ListNode* sortList(ListNode* head) &#123; if(head == NULL || head-&gt;next == NULL)&#123; return head; &#125; ListNode* fast = head, *slow = head; ListNode* preTail = NULL; while(fast != NULL &amp;&amp; fast-&gt;next != NULL)&#123; preTail = slow; fast = fast-&gt;next-&gt;next; slow = slow-&gt;next; &#125; if(preTail != NULL) preTail-&gt;next = NULL; // ListNode* l1 = sortList(head); // ListNode* l2 = sortList(slow); return mergeTwoLists(sortList(head),sortList(slow)); &#125; private: ListNode* mergeTwoLists(ListNode* l1,ListNode* l2)&#123; ListNode* dummyHead = new ListNode(-1); ListNode* temp = dummyHead; while(l1 &amp;&amp; l2)&#123; if(l1-&gt;val &lt; l2-&gt;val)&#123; temp-&gt;next = l1; l1 = l1-&gt;next; &#125;else&#123; temp-&gt;next = l2; l2 = l2-&gt;next; &#125; temp = temp-&gt;next; &#125; temp-&gt;next = l1 ? l1 : l2; return dummyHead-&gt;next; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Tencent</tag>
+        <tag>链表</tag>
+        <tag>归并排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2的幂（231）]]></title>
     <url>%2Fpost%2Fabfa51f.html</url>
     <content type="text"><![CDATA[题目 给定一个整数，编写一个函数来判断它是否是 2 的幂次方。 示例 1:123输入: 1输出: true解释: 20 = 1 示例 2:123输入: 16输出: true解释: 24 = 16 示例 3:12输入: 218输出: false 分析 迭代求解当 n&gt;1 时，判断 n%2是否能除尽，如除不尽，返回 false,否则，通过 n /= 2更新 n 值，继续判断。 实现代码：C++1234567891011121314151617class Solution &#123;public: bool isPowerOfTwo(int n) &#123; if(n &lt;= 0)&#123; return false; &#125;else if(n == 1)&#123; return true; &#125; while(n &gt; 1)&#123; if(n % 2 != 0)&#123; return false; &#125;else n /= 2; &#125; return true; &#125;&#125;;]]></content>
@@ -21,9 +34,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>哈希表</tag>
         <tag>数组</tag>
         <tag>算法</tag>
-        <tag>哈希表</tag>
       </tags>
   </entry>
   <entry>
@@ -35,8 +48,8 @@
       </categories>
       <tags>
         <tag>Tencent</tag>
-        <tag>算法</tag>
         <tag>哈希表</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -113,16 +126,17 @@
       </categories>
       <tags>
         <tag>算法</tag>
-        <tag>排序链表</tag>
         <tag>归并排序</tag>
+        <tag>排序链表</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode之合并两个有序链表]]></title>
+    <title><![CDATA[LeetCode之合并两个有序链表（21）]]></title>
     <url>%2Fpost%2F5fd4a75a.html</url>
     <content type="text"><![CDATA[题目 将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 示例：12输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4 分析 归并排序，原理与 合并两个有序数组相似。 实现代码：C++1234567891011121314151617181920212223242526272829/** * Definition for singly-linked list. * struct ListNode &#123; * int val; * ListNode *next; * ListNode(int x) : val(x), next(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) &#123; ListNode *dummyHead = new ListNode(0); ListNode *temp = dummyHead; ListNode *i = l1,*j = l2; while(i &amp;&amp; j)&#123; if(i-&gt;val &lt; j-&gt;val)&#123; temp-&gt;next = i; temp = temp-&gt;next; i = i-&gt;next; &#125;else&#123; temp-&gt;next = j; temp = temp-&gt;next; j = j-&gt;next; &#125; &#125; temp-&gt;next = i ? i : j; return dummyHead-&gt;next; &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
+        <category>Tencent</category>
       </categories>
       <tags>
         <tag>算法</tag>
@@ -216,9 +230,9 @@
         <category>LeetCode</category>
       </categories>
       <tags>
+        <tag>哈希表</tag>
         <tag>数组</tag>
         <tag>算法</tag>
-        <tag>哈希表</tag>
       </tags>
   </entry>
   <entry>

@@ -395,6 +395,219 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://qufeiyan.top/post/8a815e5c.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="曲非烟">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QuFeiyan's Hut">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/post/8a815e5c.html" itemprop="url">LeetCode之最接近的三数之和（16）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-03T21:04:16+08:00">
+                2018-09-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-03T22:17:32+08:00">
+                2018-09-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/post/8a815e5c.html" class="leancloud_visitors" data-flag-title="LeetCode之最接近的三数之和（16）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             <span> °C </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  375
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote>
+<p>给定一个包含n个整数的数组<code>nums</code>和一个目标值<code>target</code>。找出<code>nums</code>中的三个整数，<br>使得它们的和与<code>target</code>最接近。返回这三个数的和。假定每组输入只存在唯一答案。<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">例如，给定数组nums = [<span class="number">-1</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-4</span>],和target = <span class="number">1.</span></span><br><span class="line">与target 最接近的三个数的和为<span class="number">2.</span>(<span class="number">-1</span> + <span class="number">2</span> + <span class="number">1</span> = <span class="number">2</span>).</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p><span id="inline-red">用双指针法求解</span></p>
+<blockquote>
+<p>首先对数组进行升序排列（C++ sort默认升序)，然后用数组的前三个元素之和作为预设值，当在数组里确定好第一个数字后，就在剩下的数里找两数之和，再加上第一个数，判断<code>nums[i]+nums[l]+nums[r]</code>与<code>target</code>之差的绝对值是否 &lt;= 预设的三数之和与target的差的绝对值。若是，则更新预设值。然后判断<code>nums[i]+nums[l]+nums[r]</code>与<code>target</code>大小来更新指针，若前者大，说明后指针需要前移，反之，则前指针需要后移。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/8a815e5c.html" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+	
+	
+	<div>
+	 
+    </div>
+	
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://qufeiyan.top/post/4163df04.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1517,7 +1730,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1651,7 +1864,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">8.4k</span>
+    <span title="Site words total count">8.6k</span>
   
 </div>
 
