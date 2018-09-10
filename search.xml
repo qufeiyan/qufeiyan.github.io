@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode之求众数（169）]]></title>
+    <url>%2Fpost%2F9a90b69e.html</url>
+    <content type="text"><![CDATA[题目 给定一个大小为 n 的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。 你可以假设数组是非空的，并且给定的数组总是存在众数。 示例 1:12输入: [3,2,3]输出: 3 示例 2:12输入: [2,2,1,1,1,2,2]输出: 2 分析实现代码：C++1234567891011121314151617181920class Solution &#123;public: int majorityElement(vector&lt;int&gt;&amp; nums) &#123; unordered_map&lt;int,int&gt; umap; int size = nums.size(); for(int i = 0;i &lt; size;i++)&#123; if(umap.count(nums[i]))&#123; umap[nums[i]]++; &#125;else umap[nums[i]] = 1; &#125; for(int i = 0;i &lt; size;i++)&#123; if(umap[nums[i]] &gt;= size/2 + 1)&#123; return nums[i]; &#125; &#125; return -1; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>算法</tag>
+        <tag>哈希表</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode只出现一次的数字（136）]]></title>
     <url>%2Fpost%2F8d66073a.html</url>
-    <content type="text"><![CDATA[题目 给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。 说明：1你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？ 示例 1:12输入: [2,2,1]输出: 1 示例 2:12输入: [4,1,2,1,2]输出: 4 分析： 先排序 再判断重复 时间复杂度为O(n*logn)+O(n),即O(n);实现代码：C++1234567891011121314151617181920class Solution &#123;public: int singleNumber(vector&lt;int&gt;&amp; nums) &#123; sort(nums.begin(),nums.end()); int size = nums.size(); if(nums[0]!= nums[1])&#123; return nums[0]; &#125;else if(nums[size-1] != nums[size-2])&#123; return nums[size-1]; &#125; for(int i = 1;i &lt; size-1;i++)&#123; if(nums[i] != nums[i-1] &amp;&amp; nums[i] != nums[i+1])&#123; return nums[i]; &#125; &#125; return -1; &#125;&#125;;]]></content>
+    <content type="text"><![CDATA[题目 给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。 说明：1你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？ 示例 1:12输入: [2,2,1]输出: 1 示例 2:12输入: [4,1,2,1,2]输出: 4 分析：1.排序遍历。 先排序 再判断重复 时间复杂度为O(n*logn)+O(n)，不满足;实现代码：C++1234567891011121314151617181920class Solution &#123;public: int singleNumber(vector&lt;int&gt;&amp; nums) &#123; sort(nums.begin(),nums.end()); int size = nums.size(); if(nums[0]!= nums[1])&#123; return nums[0]; &#125;else if(nums[size-1] != nums[size-2])&#123; return nums[size-1]; &#125; for(int i = 1;i &lt; size-1;i++)&#123; if(nums[i] != nums[i-1] &amp;&amp; nums[i] != nums[i+1])&#123; return nums[i]; &#125; &#125; return -1; &#125;&#125;; 2. 哈希遍历。1234567891011121314151617181920class Solution &#123;public: int singleNumber(vector&lt;int&gt;&amp; nums) &#123; unordered_map&lt;int,int&gt; umap; int size = nums.size(); for(int i = 0;i &lt; size;i++)&#123; if(umap.count(nums[i]))&#123; umap[nums[i]]++; &#125;else umap[nums[i]] = 1; &#125; for(int i = 0;i &lt; size;i++)&#123; if(umap[nums[i]] == 1)&#123; return nums[i]; &#125; &#125; return -1; &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
       <tags>
         <tag>算法</tag>
+        <tag>哈希表</tag>
         <tag>Tencent</tag>
       </tags>
   </entry>
@@ -86,8 +100,8 @@
       </categories>
       <tags>
         <tag>算法</tag>
-        <tag>排序链表</tag>
         <tag>归并排序</tag>
+        <tag>排序链表</tag>
       </tags>
   </entry>
   <entry>
@@ -190,8 +204,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>哈希表</tag>
         <tag>算法</tag>
+        <tag>哈希表</tag>
       </tags>
   </entry>
   <entry>
@@ -203,8 +217,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>双指针法</tag>
         <tag>算法</tag>
+        <tag>双指针法</tag>
       </tags>
   </entry>
   <entry>
@@ -229,8 +243,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>双指针法</tag>
         <tag>算法</tag>
+        <tag>双指针法</tag>
       </tags>
   </entry>
   <entry>
@@ -242,8 +256,8 @@
       </categories>
       <tags>
         <tag>数组</tag>
-        <tag>双指针法</tag>
         <tag>算法</tag>
+        <tag>双指针法</tag>
       </tags>
   </entry>
   <entry>

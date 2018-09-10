@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://qufeiyan.top/"/>
-  <updated>2018-09-09T14:49:18.540Z</updated>
+  <updated>2018-09-10T01:41:55.055Z</updated>
   <id>http://qufeiyan.top/</id>
   
   <author>
@@ -17,13 +17,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>LeetCode之求众数（169）</title>
+    <link href="http://qufeiyan.top/post/9a90b69e.html"/>
+    <id>http://qufeiyan.top/post/9a90b69e.html</id>
+    <published>2018-09-10T01:37:11.000Z</published>
+    <updated>2018-09-10T01:41:55.055Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>给定一个大小为 n 的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。</p></blockquote><blockquote><p>你可以假设数组是非空的，并且给定的数组总是存在众数。</p></blockquote><h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: [3,2,3]</span></span><br><span class="line"><span class="section">输出: 3</span></span><br></pre></td></tr></table></figure><h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: [2,2,1,1,1,2,2]</span></span><br><span class="line"><span class="section">输出: 2</span></span><br></pre></td></tr></table></figure><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; umap;</span><br><span class="line">        <span class="keyword">int</span> size = nums.size();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; size;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(umap.count(nums[i]))&#123;</span><br><span class="line">                umap[nums[i]]++;</span><br><span class="line">            &#125;<span class="keyword">else</span> </span><br><span class="line">                umap[nums[i]] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; size;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(umap[nums[i]] &gt;= size/<span class="number">2</span> + <span class="number">1</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;给定一个大小为 n 的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。&lt;/p&gt;
+&lt;/b
+      
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
+    
+    
+      <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>LeetCode只出现一次的数字（136）</title>
     <link href="http://qufeiyan.top/post/8d66073a.html"/>
     <id>http://qufeiyan.top/post/8d66073a.html</id>
     <published>2018-09-09T14:37:16.000Z</published>
-    <updated>2018-09-09T14:49:18.540Z</updated>
+    <updated>2018-09-10T02:08:19.075Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p></blockquote><h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？</span><br></pre></td></tr></table></figure><h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: [2,2,1]</span></span><br><span class="line"><span class="section">输出: 1</span></span><br></pre></td></tr></table></figure><h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: [4,1,2,1,2]</span></span><br><span class="line"><span class="section">输出: 4</span></span><br></pre></td></tr></table></figure><h1 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h1><ul><li>先排序</li><li>再判断重复</li><li>时间复杂度为O(n*logn)+O(n),即O(n);<h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        <span class="keyword">int</span> size = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(nums[<span class="number">0</span>]!= nums[<span class="number">1</span>])&#123;</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[size<span class="number">-1</span>] != nums[size<span class="number">-2</span>])&#123;</span><br><span class="line">            <span class="keyword">return</span> nums[size<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; size<span class="number">-1</span>;i++)&#123; </span><br><span class="line">            <span class="keyword">if</span>(nums[i] != nums[i<span class="number">-1</span>] &amp;&amp; nums[i] != nums[i+<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">return</span> nums[i];</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p></blockquote><h2 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？</span><br></pre></td></tr></table></figure><h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: [2,2,1]</span></span><br><span class="line"><span class="section">输出: 1</span></span><br></pre></td></tr></table></figure><h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: [4,1,2,1,2]</span></span><br><span class="line"><span class="section">输出: 4</span></span><br></pre></td></tr></table></figure><h1 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h1><p><span id="inline-red">1.排序遍历。</span></p><ul><li>先排序</li><li>再判断重复</li><li>时间复杂度为O(n*logn)+O(n)，不满足;<h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：C++</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        <span class="keyword">int</span> size = nums.size();</span><br><span class="line">        <span class="keyword">if</span>(nums[<span class="number">0</span>]!= nums[<span class="number">1</span>])&#123;</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[size<span class="number">-1</span>] != nums[size<span class="number">-2</span>])&#123;</span><br><span class="line">            <span class="keyword">return</span> nums[size<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; size<span class="number">-1</span>;i++)&#123; </span><br><span class="line">            <span class="keyword">if</span>(nums[i] != nums[i<span class="number">-1</span>] &amp;&amp; nums[i] != nums[i+<span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">return</span> nums[i];</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li></ul><p><span id="inline-red">2. 哈希遍历。</span><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; umap;</span><br><span class="line">        <span class="keyword">int</span> size = nums.size();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; size;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(umap.count(nums[i]))&#123;</span><br><span class="line">                umap[nums[i]]++;</span><br><span class="line">            &#125;<span class="keyword">else</span> </span><br><span class="line">                umap[nums[i]] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; size;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(umap[nums[i]] == <span class="number">1</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>]]></content>
     
     <summary type="html">
     
@@ -40,6 +71,8 @@
     
     
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
     
       <category term="Tencent" scheme="http://qufeiyan.top/tags/Tencent/"/>
     
@@ -227,9 +260,9 @@
     
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="排序链表" scheme="http://qufeiyan.top/tags/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/"/>
-    
       <category term="归并排序" scheme="http://qufeiyan.top/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="排序链表" scheme="http://qufeiyan.top/tags/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/"/>
     
   </entry>
   
@@ -488,9 +521,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
-    
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="哈希表" scheme="http://qufeiyan.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
     
   </entry>
   
@@ -522,9 +555,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
-    
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
     
   </entry>
   
@@ -588,9 +621,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
-      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
-    
       <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
     
   </entry>
   
@@ -631,38 +664,9 @@
     
       <category term="数组" scheme="http://qufeiyan.top/tags/%E6%95%B0%E7%BB%84/"/>
     
+      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
       <category term="双指针法" scheme="http://qufeiyan.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"/>
-    
-      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCode之最长公共前缀（14）</title>
-    <link href="http://qufeiyan.top/post/f9dfb861.html"/>
-    <id>http://qufeiyan.top/post/f9dfb861.html</id>
-    <published>2018-09-02T08:42:40.000Z</published>
-    <updated>2018-09-03T14:08:19.800Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><blockquote><p>编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串””。</p></blockquote><h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h2><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入： [<span class="string">"flower"</span>,<span class="string">"flow"</span>,<span class="string">"flight"</span>]</span><br><span class="line">输出： <span class="string">"fl"</span></span><br></pre></td></tr></table></figure><h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h2><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入： [<span class="string">"dog"</span>,<span class="string">"racecar"</span>,<span class="string">"car"</span>]</span><br><span class="line">输出： <span class="string">""</span></span><br><span class="line">解释： 输入不存在公共前缀</span><br></pre></td></tr></table></figure><h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>所有输入只包含小写字母<code>a-z</code>；</p><a id="more"></a><h1 id="实现代码：C"><a href="#实现代码：C" class="headerlink" title="实现代码：C++"></a>实现代码：<code>C++</code></h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestCommonPrefix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = strs.size();</span><br><span class="line">        <span class="keyword">if</span>(size == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">string</span> temp;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; strs[<span class="number">0</span>].size(); j++)&#123;</span><br><span class="line">            <span class="keyword">char</span> t = strs[<span class="number">0</span>][j];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(strs[i][j] != t || strs[i][j == <span class="string">'\0'</span>])&#123;</span><br><span class="line">                    flag = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            temp.push_back(t);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串””。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;示例1&quot;&gt;&lt;a href=&quot;#示例1&quot; class=&quot;headerlink&quot; title=&quot;示例1&quot;&gt;&lt;/a&gt;示例1&lt;/h2&gt;&lt;figure class=&quot;highlight prolog&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入： [&lt;span class=&quot;string&quot;&gt;&quot;flower&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;flow&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;flight&quot;&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出： &lt;span class=&quot;string&quot;&gt;&quot;fl&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;示例2&quot;&gt;&lt;a href=&quot;#示例2&quot; class=&quot;headerlink&quot; title=&quot;示例2&quot;&gt;&lt;/a&gt;示例2&lt;/h2&gt;&lt;figure class=&quot;highlight prolog&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入： [&lt;span class=&quot;string&quot;&gt;&quot;dog&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;racecar&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;car&quot;&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出： &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;解释： 输入不存在公共前缀&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h1 id=&quot;说明&quot;&gt;&lt;a href=&quot;#说明&quot; class=&quot;headerlink&quot; title=&quot;说明&quot;&gt;&lt;/a&gt;说明&lt;/h1&gt;&lt;p&gt;所有输入只包含小写字母&lt;code&gt;a-z&lt;/code&gt;；&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="LeetCode" scheme="http://qufeiyan.top/categories/LeetCode/"/>
-    
-    
-      <category term="算法" scheme="http://qufeiyan.top/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="字符串" scheme="http://qufeiyan.top/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
   </entry>
   
